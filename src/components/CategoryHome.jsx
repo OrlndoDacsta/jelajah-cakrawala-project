@@ -1,0 +1,84 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+const CategoryHome = () => {
+  const [categories, setCategories] = useState([]);
+
+  const getCategories = () => {
+    axios
+      .get(
+        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/categories",
+        {
+          headers: {
+            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res.data.data);
+        setCategories(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  return (
+    <section className="flex flex-col items-center justify-center p-5 mt-10 bg-gray-300 border backdrop-filter backdrop-blur-md bg-opacity-10">
+      <h1 className="text-3xl font-bold">Choose Your Dream Destination</h1>
+      <p className="text-gray-500">
+        "Highlight the opportunity for users to pick a place they've always
+        wanted to visit."
+      </p>
+      <Carousel
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        className="mt-10"
+      >
+        <CarouselContent>
+          {categories.map((item) => (
+            <CarouselItem key={item.id} className="basis-1/4">
+              <Card className="w-[300px] hover:scale-95 duration-300 border-none p-2">
+                <CardContent className="flex flex-col items-center justify-center gap-1">
+                  <img
+                    className="object-cover rounded-lg aspect-video"
+                    src={item.imageUrl}
+                    alt="imgCategory"
+                  />
+                  <CardTitle className="text-xl font-bold">
+                    {item.name}
+                  </CardTitle>
+                </CardContent>
+              </Card>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="bg-blue-500" />
+        <CarouselNext className="bg-blue-500" />
+      </Carousel>
+    </section>
+  );
+};
+
+export default CategoryHome;
