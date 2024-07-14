@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { format } from "date-fns";
 const BannerAtributes = () => {
   const param = useParams();
   const [detailBanner, setDetailBanner] = useState({});
@@ -48,10 +49,10 @@ const BannerAtributes = () => {
             alt="imgPromo"
           />
           <CardDescription className="mt-3 text-lg font-semibold">
-            Created: {detailBanner.createdAt}
+            Created: {format(new Date(detailBanner.createdAt), "dd MMM yyyy")}
           </CardDescription>
           <CardDescription className="mt-3 text-lg font-semibold">
-            Upadted: {detailBanner.updatedAt}
+            Upadted: {format(new Date(detailBanner.updatedAt), "dd MMM yyyy")}
           </CardDescription>
         </CardContent>
       </Card>

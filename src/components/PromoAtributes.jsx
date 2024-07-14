@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { formatRupiah } from "@/lib/utils";
+import { format } from "date-fns";
 
 const PromoAtributes = () => {
   const param = useParams();
@@ -49,11 +51,11 @@ const PromoAtributes = () => {
           </tr>
           <tr>
             <td>Minimum Claim Price</td>
-            <td>: Rp. {detailPromo.minimum_claim_price}</td>
+            <td>: {formatRupiah(detailPromo.minimum_claim_price)}</td>
           </tr>
           <tr>
             <td>Discount Price</td>
-            <td>: Rp. {detailPromo.promo_discount_price}</td>
+            <td>: {formatRupiah(detailPromo.promo_discount_price)}</td>
           </tr>
           <tr>
             <td>Terms and Conditions</td>
@@ -61,11 +63,11 @@ const PromoAtributes = () => {
           </tr>
           <tr>
             <td>Created at</td>
-            <td>: {detailPromo.createdAt}</td>
+            <td>: {format(new Date(detailPromo.createdAt), "dd MMM yyyy")}</td>
           </tr>
           <tr>
             <td>Last Update</td>
-            <td>: {detailPromo.updatedAt}</td>
+            <td>: {format(new Date(detailPromo.updatedAt), "dd MMM yyyy")}</td>
           </tr>
         </table>
       </div>

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
+import { formatRupiah } from "@/lib/utils";
 
 const ActivityAtributes = () => {
   const param = useParams();
@@ -70,11 +71,11 @@ const ActivityAtributes = () => {
             </tr>
             <tr>
               <td>Price</td>
-              <td>: {detailActivity.price}</td>
+              <td>: {formatRupiah(detailActivity.price)}</td>
             </tr>
             <tr>
               <td>Promo Price</td>
-              <td>: {detailActivity.price_discount}</td>
+              <td>: {formatRupiah(detailActivity.price_discount)}</td>
             </tr>
             <tr>
               <td>Facilities</td>

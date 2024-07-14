@@ -53,7 +53,7 @@ const BannerHome = () => {
       <CarouselContent>
         {banners.map((banner) => (
           <CarouselItem key={banner.id}>
-            <Card className="flex flex-col items-center w-full p-2 bg-gray-300 border backdrop-filter backdrop-blur-md bg-opacity-10">
+            <Card className="flex flex-col items-center w-full pt-5 bg-gray-300 border backdrop-filter backdrop-blur-md bg-opacity-10">
               <CardContent>
                 <img
                   className="w-[500px] h-[300px] object-cover rounded-xl"

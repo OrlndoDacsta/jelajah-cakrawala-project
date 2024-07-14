@@ -4,6 +4,14 @@ import { Link } from "react-router-dom";
 import ButtonLogout from "./ButtonLogout";
 import { useSelector } from "react-redux";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -21,17 +29,36 @@ const Navbar = () => {
         <Link to="/promo">
           <p>Promo</p>
         </Link>
+        {isLoggedIn && (
+          <Link to="/dashboard">
+            <p>Dashboard</p>
+          </Link>
+        )}
       </div>
 
-      {isLoggedIn && (
-        <div className="flex gap-2">
-          <Avatar>
-            <AvatarImage src={userInfo.user.profilePictureUrl} />
-            <AvatarFallback className="text-xl text-primary">CN</AvatarFallback>
-          </Avatar>
-          <p>{userInfo.user.name}</p>
-        </div>
-      )}
+      <div className="flex gap-2">
+        {isLoggedIn && (
+          <DropdownMenu>
+            <Avatar>
+              <AvatarImage src={userInfo.user.profilePictureUrl} />
+              <AvatarFallback className="text-xl text-primary">
+                CN
+              </AvatarFallback>
+            </Avatar>
+            <DropdownMenuTrigger className="px-3 py-1 mr-5 font-semibold text-black bg-blue-500 rounded-lg shadow-lg">
+              {userInfo.user.name}
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-blue-500">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem><Link to="/profile">Profile</Link></DropdownMenuItem>
+              <DropdownMenuItem>
+                <ButtonLogout />
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
+      </div>
 
       {!isLoggedIn && (
         <div className="flex gap-2">
@@ -43,7 +70,6 @@ const Navbar = () => {
           </Link>
         </div>
       )}
-      {isLoggedIn && <ButtonLogout />}
     </nav>
   );
 };

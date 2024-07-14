@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { formatRupiah } from "@/lib/utils";
 
 const PromoHome = () => {
   const [promo, setPromo] = useState([]);
@@ -49,11 +50,11 @@ const PromoHome = () => {
           <div className="flex space-x-16 animate-loop-scroll group-hover:paused">
             {promo.map((item) => (
               <Card
-                className="w-[250px] hover:scale-105 duration-300 hover:bg-blue-300"
+                className="w-[250px] hover:scale-105 duration-300 hover:bg-blue-300 bg-slate-300 pt-5"
                 key={item.id}
               >
                 <CardContent className="flex flex-col items-center justify-center gap-2">
-                  <CardTitle className="text-2xl font-bold">
+                  <CardTitle className="text-lg font-bold">
                     {item.title}
                   </CardTitle>
                   <img
@@ -63,10 +64,10 @@ const PromoHome = () => {
                   />
                   <div className="flex gap-2">
                     <CardDescription className="line-through">
-                      Rp. {item.minimum_claim_price}
+                      {formatRupiah(item.minimum_claim_price)}
                     </CardDescription>
                     <CardDescription>
-                      Rp. {item.promo_discount_price}
+                      {formatRupiah(item.promo_discount_price)}
                     </CardDescription>
                   </div>
                 </CardContent>

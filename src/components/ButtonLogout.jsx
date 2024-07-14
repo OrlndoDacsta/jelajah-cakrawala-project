@@ -23,7 +23,7 @@ const ButtonLogout = () => {
         dispatch(logout());
 
         setTimeout(() => {
-          navigate("/login");
+          navigate("/");
         }, 2000);
       })
       .catch((err) => {
@@ -35,7 +35,7 @@ const ButtonLogout = () => {
     <div>
       <button
         onClick={handleLogout}
-        className="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
+        className="px-3 py-1 font-bold text-white bg-red-500 rounded hover:bg-red-700"
       >
         Logout
       </button>

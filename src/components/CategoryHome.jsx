@@ -43,7 +43,7 @@ const CategoryHome = () => {
   }, []);
 
   return (
-    <section className="flex flex-col items-center justify-center p-5 mt-10 bg-gray-300 border backdrop-filter backdrop-blur-md bg-opacity-10">
+    <section className="flex flex-col items-center justify-center w-3/4 p-5 mx-auto mt-10 bg-gray-300 border backdrop-filter backdrop-blur-md bg-opacity-10">
       <h1 className="text-3xl font-bold">Choose Your Dream Destination</h1>
       <p className="text-gray-500">
         "Highlight the opportunity for users to pick a place they've always
@@ -54,19 +54,19 @@ const CategoryHome = () => {
           align: "start",
           loop: true,
         }}
-        className="mt-10"
+        className="w-10/12 mt-10"
       >
         <CarouselContent>
           {categories.map((item) => (
-            <CarouselItem key={item.id} className="basis-1/4">
-              <Card className="w-[300px] hover:scale-95 duration-300 border-none p-2">
+            <CarouselItem key={item.id} className="basis-1/3">
+              <Card className="w-[200px] hover:scale-95 duration-300 border-none pt-5 bg-slate-300">
                 <CardContent className="flex flex-col items-center justify-center gap-1">
                   <img
                     className="object-cover rounded-lg aspect-video"
                     src={item.imageUrl}
                     alt="imgCategory"
                   />
-                  <CardTitle className="text-xl font-bold">
+                  <CardTitle className="text-sm font-bold">
                     {item.name}
                   </CardTitle>
                 </CardContent>

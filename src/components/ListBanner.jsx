@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { format, compareAsc } from "date-fns";
+import { format } from "date-fns";
 
 const ListBanner = () => {
   const [banner, setBanner] = useState([]);

@@ -10,6 +10,8 @@ import Banner from "@/pages/Banner";
 import Category from "@/pages/Category";
 import DetailCategory from "@/pages/Category/DetailCategory";
 import DetailBanner from "@/pages/Banner/DetailBanner";
+import Dashboard from "@/pages/dashboard";
+import Profile from "@/pages/Profile";
 
 const routeList = [
   {
@@ -40,6 +42,14 @@ const routeList = [
     path: "/activity",
     element: <Activity />,
   },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },  
   {
     path: "/promo/:id",
     element: <DetailPromo />,
