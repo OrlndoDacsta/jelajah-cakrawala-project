@@ -83,7 +83,7 @@ const CreateBanner = () => {
         }
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         toast({ description: res.data.message, variant: "success" });
         window.location.href = "/banner";
       })
@@ -100,7 +100,7 @@ const CreateBanner = () => {
     <div>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline">Create New Banner</Button>
+          <Button variant="outline" className="text-white bg-primary">Create New Banner</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
