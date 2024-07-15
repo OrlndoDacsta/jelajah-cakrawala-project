@@ -1,6 +1,28 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { format } from "date-fns";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useToast } from "@/components/ui/use-toast";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 
 const ListCategory = () => {
   const [category, setCategory] = useState([]);
@@ -21,6 +43,11 @@ const ListCategory = () => {
       })
       .catch((err) => {
         console.log(err.response);
+        toast({
+          title: "Error",
+          description: err.response.data.message,
+          variant: "destructive",
+        });
       });
   };
 
@@ -31,31 +58,65 @@ const ListCategory = () => {
   return (
     <div className="grid grid-cols-3 gap-5 p-5">
       {category.map((item) => (
-        <Link
+        <div
           key={item.id}
-          className="w-[350px] border shadow-2xl rounded-3xl bg-blue-800"
-          to={`/category/${item.id}`}
+          className="w-[400px] border shadow-2xl rounded-3xl"
         >
-          <div className="flex flex-col items-center justify-center gap-3">
-            <div className="text-3xl font-bold">{item.name}</div>
-            <img
-              className="w-full rounded-tl-xl rounded-tr-xl h-[200px] object-cover"
-              src={item.imageUrl}
-              alt="imgPromo"
-            />
-          </div>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-3xl font-bold text-center">
+                {item.name}
+              </CardTitle>
+              <CardDescription>
+                  <img
+                    src={item.imageUrl}
+                    alt="imgPromo"
+                    className="w-full rounded-tl-xl rounded-tr-xl h-[200px] object-cover"
+                  />
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>
+                <span className="font-bold">Created: </span>
+                {format(new Date(item.createdAt), "eee, dd MMM yyyy")}
+              </p>
+              <p>
+                <span className="font-bold">Updated: </span>
+                {format(new Date(item.updatedAt), "eee, dd MMM yyyy")}
+              </p>
+            </CardContent>
+            <CardFooter className="flex justify-between">
+              {/* Edit */}
+              <Link to={`/banner/update-banner/${item.id}`}>
+                <Button variant="outline" className="bg-primary text-white">Update</Button>
+              </Link>
 
-          <div className="w-full p-3 bg-blue-800 rounded-b-3xl">
-            <ul>
-              <li>
-                <b>Created:</b> {item.createdAt}
-              </li>
-              <li>
-                <b>Update:</b> {item.updatedAt}
-              </li>
-            </ul>
-          </div>
-        </Link>
+              {/* Delete */}
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="destructive">Delete</Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Are you sure delete this banner?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone. This will permanently delete
+                      your account and remove your data from our servers.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={() => handleDelete(item.id)}>
+                      Delete
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </CardFooter>
+          </Card>
+        </div>
       ))}
     </div>
   );

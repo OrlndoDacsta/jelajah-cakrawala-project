@@ -9,9 +9,9 @@ import DetailActivity from "@/pages/Activity/DetailActivity";
 import Banner from "@/pages/Banner";
 import Category from "@/pages/Category";
 import DetailCategory from "@/pages/Category/DetailCategory";
-import DetailBanner from "@/pages/Banner/DetailBanner";
 import Dashboard from "@/pages/dashboard";
 import Profile from "@/pages/Profile";
+import UpdateBanner from "@/pages/Banner/UpdateBanner";
 
 const routeList = [
   {
@@ -63,9 +63,9 @@ const routeList = [
     element: <DetailCategory />,
   },
   {
-    path: "/banner/:id",
-    element: <DetailBanner />,
-  },
+    path: "/banner/update-banner/:id",
+    element: <UpdateBanner />,
+  }
 ];
 
 export default routeList;

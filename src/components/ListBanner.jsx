@@ -44,6 +44,11 @@ const ListBanner = () => {
       })
       .catch((err) => {
         console.log(err.response);
+        toast({
+          title: "Error",
+          description: err.response.data.message,
+          variant: "destructive",
+        });
       });
   };
 
@@ -67,6 +72,10 @@ const ListBanner = () => {
       })
       .catch((err) => {
         console.log(err.response);
+        toast({
+          description: err.response.data.message,
+          variant: "destructive",
+        });
       });
   };
 
@@ -77,23 +86,18 @@ const ListBanner = () => {
   return (
     <div className="grid grid-cols-3 gap-5 p-5">
       {banner.map((item) => (
-        <div
-          key={item.id}
-          className="w-[350px] border shadow-2xl rounded-3xl bg-blue-800"
-        >
+        <div key={item.id} className="w-[400px] border shadow-2xl rounded-3xl">
           <Card>
             <CardHeader>
               <CardTitle className="text-3xl font-bold text-center">
                 {item.name}
               </CardTitle>
               <CardDescription>
-                <Link to={`/banner/${item.id}`}>
-                  <img
-                    src={item.imageUrl}
-                    alt="imgPromo"
-                    className="w-full rounded-tl-xl rounded-tr-xl h-[200px] object-cover"
-                  />
-                </Link>
+                <img
+                  src={item.imageUrl}
+                  alt="imgPromo"
+                  className="w-full rounded-tl-xl rounded-tr-xl h-[200px] object-cover"
+                />
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -106,7 +110,15 @@ const ListBanner = () => {
                 {format(new Date(item.updatedAt), "eee, dd MMM yyyy")}
               </p>
             </CardContent>
-            <CardFooter>
+            <CardFooter className="flex justify-between">
+              {/* Edit */}
+              <Link to={`/banner/update-banner/${item.id}`}>
+                <Button variant="outline" className="bg-primary text-white">
+                  Update
+                </Button>
+              </Link>
+
+              {/* Delete */}
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button variant="destructive">Delete</Button>
@@ -123,7 +135,9 @@ const ListBanner = () => {
                   </AlertDialogHeader>
                   <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={() => handleDelete(item.id)}>Delete</AlertDialogAction>
+                    <AlertDialogAction onClick={() => handleDelete(item.id)}>
+                      Delete
+                    </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>

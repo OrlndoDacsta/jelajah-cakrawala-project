@@ -14,9 +14,8 @@ import { Label } from "@/components/ui/label";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
-import { ToastAction } from "@/components/ui/toast";
 
-const CreateBanner = () => {
+const CreateCategory = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState(null);
   const { toast } = useToast();
@@ -72,7 +71,7 @@ const CreateBanner = () => {
 
     axios
       .post(
-        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-banner",
+        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-category",
         payload,
         {
           headers: {
@@ -84,7 +83,7 @@ const CreateBanner = () => {
       .then((res) => {
         // console.log(res);
         toast({ description: res.data.message, variant: "success" });
-        window.location.href = "/banner";
+        window.location.href = "/category";
       })
       .catch((err) => {
         console.log(err);
@@ -99,11 +98,13 @@ const CreateBanner = () => {
     <div>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline" className="text-white bg-primary">Create New Banner</Button>
+          <Button variant="outline" className="text-white bg-primary">
+            Create New Category
+          </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Create Banner</DialogTitle>
+            <DialogTitle>Create Category</DialogTitle>
             <DialogDescription>
               Make new banner here. Click create when you're done.
             </DialogDescription>
@@ -117,7 +118,7 @@ const CreateBanner = () => {
                 id="name"
                 className="col-span-3"
                 onChange={handleNameChange}
-                placeholder="Banner Name"
+                placeholder="Category Name"
               />
             </div>
             <div className="grid items-center grid-cols-4 gap-4">
@@ -130,7 +131,6 @@ const CreateBanner = () => {
                 type="file"
                 onChange={handleUpload}
               />
-              
             </div>
           </div>
           <DialogFooter>
@@ -144,4 +144,4 @@ const CreateBanner = () => {
   );
 };
 
-export default CreateBanner;
+export default CreateCategory;
