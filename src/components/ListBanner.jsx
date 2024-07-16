@@ -27,6 +27,7 @@ import { Button } from "@/components/ui/button";
 const ListBanner = () => {
   const [banner, setBanner] = useState([]);
   const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
 
   const getBanner = () => {
     axios
@@ -53,6 +54,7 @@ const ListBanner = () => {
   };
 
   const handleDelete = (id) => {
+    setIsLoading(true);
     axios
       .delete(
         `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-banner/${id}`,
@@ -64,11 +66,12 @@ const ListBanner = () => {
         }
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
+
         if (res.data.code === "200") {
+          setBanner((prevItems) => prevItems.filter((item) => item.id !== id));
           toast({ description: res.data.message, variant: "destructive" });
         }
-        window.location.href = "/banner";
       })
       .catch((err) => {
         console.log(err.response);
@@ -76,13 +79,14 @@ const ListBanner = () => {
           description: err.response.data.message,
           variant: "destructive",
         });
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   useEffect(() => {
     getBanner();
   }, []);
-
+  console.log(banner);
   return (
     <div className="grid grid-cols-3 gap-5 p-5">
       {banner.map((item) => (
@@ -113,7 +117,7 @@ const ListBanner = () => {
             <CardFooter className="flex justify-between">
               {/* Edit */}
               <Link to={`/banner/update-banner/${item.id}`}>
-                <Button variant="outline" className="bg-primary text-white">
+                <Button variant="outline" className="text-white bg-primary">
                   Update
                 </Button>
               </Link>
@@ -121,7 +125,9 @@ const ListBanner = () => {
               {/* Delete */}
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <Button variant="destructive">Delete</Button>
+                  <Button disabled={isLoading} variant="destructive">
+                    {isLoading ? "Loading..." : "Delete"}
+                  </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>

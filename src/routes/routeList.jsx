@@ -9,9 +9,10 @@ import DetailActivity from "@/pages/Activity/DetailActivity";
 import Banner from "@/pages/Banner";
 import Category from "@/pages/Category";
 import DetailCategory from "@/pages/Category/DetailCategory";
-import Dashboard from "@/pages/dashboard";
 import Profile from "@/pages/Profile";
 import UpdateBanner from "@/pages/Banner/UpdateBanner";
+import { Dashboard } from "@/pages/dashboard";
+import ListUser from "@/pages/dashboard/ListUser";
 
 const routeList = [
   {
@@ -45,6 +46,10 @@ const routeList = [
   {
     path: "/dashboard",
     element: <Dashboard />,
+  },
+  {
+    path: "/dashboard/user",
+    element: <ListUser />,
   },
   {
     path: "/profile",

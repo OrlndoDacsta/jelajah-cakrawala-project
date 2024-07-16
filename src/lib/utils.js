@@ -11,3 +11,4 @@ export function formatRupiah(number) {
     currency: "IDR",
   }).format(number)
 }
+
