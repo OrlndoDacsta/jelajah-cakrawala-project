@@ -12,7 +12,6 @@ const Banner = () => {
       <div className="flex items-center justify-center gap-3 p-2">
         <MdOutlinePictureInPicture className="w-12 h-12" />
         <h1 className="text-3xl font-bold">List Banner</h1>
-        <CreateBanner />
       </div>
       <ListBanner />
       <Footer />

@@ -6,9 +6,9 @@ import {
   Menu,
   Package,
   Package2,
-  Search,
-  ShoppingCart,
   Users,
+  BadgePercent,
+  Car
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
@@ -18,42 +18,39 @@ const SideBar = () => {
     <div className="flex-1">
       <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
         <Link
-          href="#"
-          className="flex items-center gap-3 px-3 py-2 transition-all rounded-lg text-muted-foreground hover:text-primary"
+          to={"/dashboard/user"}
+          className="flex items-center gap-3 px-3 py-2 transition-all rounded-lg text-muted-foreground hover:text-primary "
         >
           <Users className="w-4 h-4" />
           User
         </Link>
         <Link
-          href="#"
+          to={"/dashboard/banner"}
           className="flex items-center gap-3 px-3 py-2 transition-all rounded-lg text-muted-foreground hover:text-primary"
         >
-          <ShoppingCart className="w-4 h-4" />
-          Orders
-          <Badge className="flex items-center justify-center w-6 h-6 ml-auto rounded-full shrink-0">
-            6
-          </Badge>
+          <Package2 className="w-4 h-4" />
+          Banner
         </Link>
         <Link
-          href="#"
+          to={"/dashboard/category"}
           className="flex items-center gap-3 px-3 py-2 transition-all rounded-lg text-muted-foreground hover:text-primary"
         >
           <Package className="w-4 h-4" />
-          Products{" "}
+          Category
         </Link>
         <Link
           href="#"
           className="flex items-center gap-3 px-3 py-2 transition-all rounded-lg text-muted-foreground hover:text-primary"
         >
-          <Users className="w-4 h-4" />
-          Customers
+          <BadgePercent className="w-4 h-4" />
+          Promo
         </Link>
         <Link
           href="#"
           className="flex items-center gap-3 px-3 py-2 transition-all rounded-lg text-muted-foreground hover:text-primary"
         >
-          <LineChart className="w-4 h-4" />
-          Analytics
+          <Car className="w-4 h-4" />
+          Activity
         </Link>
       </nav>
     </div>

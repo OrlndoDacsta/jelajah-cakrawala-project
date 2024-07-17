@@ -8,11 +8,13 @@ import DetailPromo from "@/pages/Promo/DetailPromo";
 import DetailActivity from "@/pages/Activity/DetailActivity";
 import Banner from "@/pages/Banner";
 import Category from "@/pages/Category";
-import DetailCategory from "@/pages/Category/DetailCategory";
-import Profile from "@/pages/Profile";
-import UpdateBanner from "@/pages/Banner/UpdateBanner";
+import Profile from "@/pages/Profile";  
 import { Dashboard } from "@/pages/dashboard";
 import ListUser from "@/pages/dashboard/ListUser";
+import BannerDashboard from "@/pages/dashboard/BannerDashboard";
+import EditBannerDashboard from "@/pages/dashboard/BannerDashboard/EditBannerDashboard";
+import CategryDashboard from "@/pages/dashboard/CategoryDashboard";
+import UpdateCategory from "@/pages/dashboard/CategoryDashboard/UpdateCategory";
 
 const routeList = [
   {
@@ -52,9 +54,25 @@ const routeList = [
     element: <ListUser />,
   },
   {
+    path: "/dashboard/banner",
+    element: <BannerDashboard />,
+  },
+  {
+    path: "/dashboard/banner/edit-banner/:id",
+    element: <EditBannerDashboard />,
+  },
+  {
+    path: "/dashboard/category",
+    element: <CategryDashboard />,
+  },
+  {
+    path: "/dashboard/category/edit-category/:id",
+    element: <UpdateCategory />,
+  },
+  {
     path: "/profile",
     element: <Profile />,
-  },  
+  },
   {
     path: "/promo/:id",
     element: <DetailPromo />,
@@ -63,14 +81,7 @@ const routeList = [
     path: "/activity/:id",
     element: <DetailActivity />,
   },
-  {
-    path: "/category/:id",
-    element: <DetailCategory />,
-  },
-  {
-    path: "/banner/update-banner/:id",
-    element: <UpdateBanner />,
-  }
+  
 ];
 
 export default routeList;

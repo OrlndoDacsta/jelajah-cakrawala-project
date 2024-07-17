@@ -84,7 +84,7 @@ const CreateBanner = () => {
       .then((res) => {
         // console.log(res);
         toast({ description: res.data.message, variant: "success" });
-        window.location.href = "/banner";
+        window.location.href = "/dashboard/banner";
       })
       .catch((err) => {
         console.log(err);

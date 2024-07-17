@@ -18,9 +18,12 @@ import { Input } from "@/components/ui/input";
 import SideBar from "@/components/SideBar";
 import ResponsiveSideBar from "@/components/ResponsiveSideBar";
 import AvatarDashboard from "@/components/AvatarDashboard";
+import ListBanner from "@/components/ListBanner";
+import ListBannerDashboard from "@/components/ListBannerDashboard";
+import CreateBanner from "../../Banner/CreateBanner";
 import LogoDashboard from "@/components/LogoDashboard";
 
-export function Dashboard() {
+const BannerDashboard = () => {
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
@@ -31,7 +34,7 @@ export function Dashboard() {
       </div>
       <div className="flex flex-col">
         <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
-        <ResponsiveSideBar />
+          <ResponsiveSideBar />
           <div className="flex-1 w-full">
             <form>
               <div className="relative">
@@ -47,25 +50,20 @@ export function Dashboard() {
           <AvatarDashboard />
         </header>
         <main className="flex flex-col flex-1 gap-4 p-4 lg:gap-6 lg:p-6">
-          <div className="flex items-center">
-            <h1 className="text-lg font-semibold md:text-2xl">Inventory</h1>
+          <div className="flex justify-between">
+            <h1 className="text-lg font-semibold md:text-2xl">List Banner</h1>
+            <CreateBanner />
           </div>
           <div
             className="flex items-center justify-center flex-1 border border-dashed rounded-lg shadow-sm"
             x-chunk="dashboard-02-chunk-1"
           >
-            <div className="flex flex-col items-center gap-1 text-center">
-              <h3 className="text-2xl font-bold tracking-tight">
-                You have no products
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                You can start selling as soon as you add a product.
-              </p>
-              <Button className="mt-4">Add Product</Button>
-            </div>
+            <ListBannerDashboard />
           </div>
         </main>
       </div>
     </div>
   );
-}
+};
+
+export default BannerDashboard;

@@ -56,11 +56,11 @@ const ListCategory = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-3 gap-5 p-5">
+    <div className="grid w-10/12 grid-cols-3 gap-10 p-5 mx-auto">
       {category.map((item) => (
         <div
           key={item.id}
-          className="w-[400px] border shadow-2xl rounded-3xl"
+          className="w-[350px] border shadow-2xl rounded-3xl"
         >
           <Card>
             <CardHeader>
@@ -85,36 +85,6 @@ const ListCategory = () => {
                 {format(new Date(item.updatedAt), "eee, dd MMM yyyy")}
               </p>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              {/* Edit */}
-              <Link to={`/banner/update-banner/${item.id}`}>
-                <Button variant="outline" className="bg-primary text-white">Update</Button>
-              </Link>
-
-              {/* Delete */}
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="destructive">Delete</Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>
-                      Are you sure delete this banner?
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>
-                      This action cannot be undone. This will permanently delete
-                      your account and remove your data from our servers.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={() => handleDelete(item.id)}>
-                      Delete
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-            </CardFooter>
           </Card>
         </div>
       ))}

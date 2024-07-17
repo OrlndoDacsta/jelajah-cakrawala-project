@@ -83,7 +83,7 @@ const CreateCategory = () => {
       .then((res) => {
         // console.log(res);
         toast({ description: res.data.message, variant: "success" });
-        window.location.href = "/category";
+        window.location.href = "/dashboard/category";
       })
       .catch((err) => {
         console.log(err);

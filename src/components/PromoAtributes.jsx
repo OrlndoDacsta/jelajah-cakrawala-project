@@ -63,11 +63,11 @@ const PromoAtributes = () => {
           </tr>
           <tr>
             <td>Created at</td>
-            <td>: {format(new Date(detailPromo.createdAt), "dd MMM yyyy")}</td>
+            {/* <td>: {format(new Date (detailPromo.createdAt), "dd MMM yyyy")}</td> */}
           </tr>
           <tr>
             <td>Last Update</td>
-            <td>: {format(new Date(detailPromo.updatedAt), "dd MMM yyyy")}</td>
+            {/* <td>: {format(new Date(detailPromo.updatedAt), "dd MMM yyyy")}</td> */}
           </tr>
         </table>
       </div>

@@ -8,6 +8,7 @@ const Promo = () => {
   return (
     <div>
       <Navbar />
+      
       <div
         className="flex h-[500px] bg-cover justify-center items-center"
         style={{ backgroundImage: `url(${promoImg})` }}

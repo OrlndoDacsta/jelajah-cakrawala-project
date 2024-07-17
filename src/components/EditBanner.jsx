@@ -107,7 +107,7 @@ const EditBanner = () => {
         // console.log(res);
         setValueBanner(res.data.data);
         toast({ description: res.data.message, variant: "success" });
-        navigate("/banner");
+        navigate("/dashboard/banner");
       })
       .catch((err) => {
         console.log(err);
@@ -119,7 +119,7 @@ const EditBanner = () => {
   };
 
   const handleCancel = () => {
-    navigate("/banner");
+    navigate("/dashboard/banner");
   };
 
   return (
@@ -127,7 +127,6 @@ const EditBanner = () => {
       <div className="flex items-center justify-center p-5 mt-5">
         <Card className="w-1/2 p-3 bg-gray-300 border shadow-2xl backdrop-filter backdrop-blur-md bg-opacity-10">
           <CardHeader className="text-3xl font-bold">
-            <h1 className="mb-2 text-center">Edit Banner</h1>
             <CardContent>
               <img
                 src={valueBanner.imageUrl}
