@@ -39,39 +39,41 @@ const ListPromo = () => {
 
   return (
     <div className="grid grid-cols-3 gap-10 p-5">
-        {promo.map((item) => (
-          <Link
-            key={item.id}
-            className="w-[340px] border shadow-2xl rounded-3xl"
-            to={`/promo/${item.id}`}
-          >
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-3xl font-bold text-center">
-                  {item.title}
-                </CardTitle>
-                <CardDescription>
-                  <img
-                    src={item.imageUrl}
-                    alt="imgPromo"
-                    className="w-full rounded-tl-xl rounded-tr-xl h-[200px] object-cover"
-                  />
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  <span className="font-bold">Created: </span>
+      {promo.map((item) => (
+        <Link
+          key={item.id}
+          className="w-[340px] border shadow-2xl rounded-3xl"
+          to={`/promo/${item.id}`}
+        >
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-3xl font-bold text-center">
+                {item.title}
+              </CardTitle>
+              <CardDescription>
+                <img
+                  src={item.imageUrl}
+                  alt="imgPromo"
+                  className="w-full rounded-tl-xl rounded-tr-xl h-[200px] object-cover"
+                />
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex gap-2">
+                <p className="font-bold">Minimum Price: </p>
+                <p className="line-through">
                   {formatRupiah(item.minimum_claim_price)}
                 </p>
-                <p>
-                  <span className="font-bold">Updated: </span>
-                  {formatRupiah(item.promo_discount_price)}
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
-      </div>
+              </div>
+              <div className="flex gap-2">
+                <p className="font-bold">Discount Price: </p>
+                <p>{formatRupiah(item.promo_discount_price)}</p>
+              </div>
+            </CardContent>
+          </Card>
+        </Link>
+      ))}
+    </div>
   );
 };
 

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {
   Bell,
   CircleUser,
@@ -11,16 +10,10 @@ import {
   ShoppingCart,
   Users,
 } from "lucide-react";
-
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import SideBar from "@/components/SideBar";
 import ResponsiveSideBar from "@/components/ResponsiveSideBar";
 import AvatarDashboard from "@/components/AvatarDashboard";
-import ListBanner from "@/components/ListBanner";
-import ListBannerDashboard from "@/components/ListBannerDashboard";
-import CreateBanner from "../../Banner/CreateBanner";
 import CreateCategory from "@/pages/Category/CreateCategory";
 import ListCategoryDashboard from "@/components/ListCategoryDashboard";
 import LogoDashboard from "@/components/LogoDashboard";

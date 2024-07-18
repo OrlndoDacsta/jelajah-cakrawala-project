@@ -24,9 +24,10 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import ReactPaginate from "react-paginate";
+import { formatRupiah } from "@/lib/utils";
 
-const ListCategoryDashboard = () => {
-  const [category, setCategory] = useState([]);
+const ListPromoDashboard = () => {
+  const [promo, setPromo] = useState([]);
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [itemOffset, setItemOffset] = useState(0);
@@ -34,21 +35,21 @@ const ListCategoryDashboard = () => {
 
   const endOffset = itemOffset + itemsPerPage;
   // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentItems = category.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(category.length / itemsPerPage);
+  const currentItems = promo.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(promo.length / itemsPerPage);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % category.length;
+    const newOffset = (event.selected * itemsPerPage) % promo.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
     setItemOffset(newOffset);
   };
 
-  const getCategory = () => {
+  const getPromo = () => {
     axios
       .get(
-        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/categories",
+        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/promos",
         {
           headers: {
             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
@@ -56,11 +57,11 @@ const ListCategoryDashboard = () => {
         }
       )
       .then((res) => {
-        // console.log(res.data.data);
-        setCategory(res.data.data);
+        // console.log(res);
+        setPromo(res.data.data);
       })
       .catch((err) => {
-        console.log(err.response);
+        console.log(err);
         toast({
           title: "Error",
           description: err.response.data.message,
@@ -73,7 +74,7 @@ const ListCategoryDashboard = () => {
     setIsLoading(true);
     axios
       .delete(
-        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-category/${id}`,
+        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-promo/${id}`,
         {
           headers: {
             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
@@ -84,9 +85,7 @@ const ListCategoryDashboard = () => {
       .then((res) => {
         // console.log(res)
         if (res.data.code === "200") {
-          setCategory((prevItems) =>
-            prevItems.filter((item) => item.id !== id)
-          );
+          setPromo((prevItems) => prevItems.filter((item) => item.id !== id));
           toast({ description: res.data.message, variant: "destructive" });
         }
       })
@@ -101,12 +100,12 @@ const ListCategoryDashboard = () => {
   };
 
   useEffect(() => {
-    getCategory();
+    getPromo();
   }, []);
 
   return (
     <div className="flex flex-col">
-      <div className="grid grid-cols-3 gap-5 p-5">
+      <div className="grid grid-cols-3 gap-10 p-5">
         {currentItems.map((item) => (
           <div
             key={item.id}
@@ -115,7 +114,7 @@ const ListCategoryDashboard = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-3xl font-bold text-center">
-                  {item.name}
+                  {item.title}
                 </CardTitle>
                 <CardDescription>
                   <img
@@ -126,32 +125,29 @@ const ListCategoryDashboard = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p>
-                  <span className="font-bold">Created: </span>
-                  {format(new Date(item.createdAt), "eee, dd MMM yyyy")}
-                </p>
-                <p>
-                  <span className="font-bold">Updated: </span>
-                  {format(new Date(item.updatedAt), "eee, dd MMM yyyy")}
-                </p>
+                <div className="flex gap-2">
+                  <p className="font-bold">Minimum Price: </p>
+                  <p className="line-through">
+                    {formatRupiah(item.minimum_claim_price)}
+                  </p>
+                </div>
+                <div className="flex gap-2">
+                  <p className="font-bold">Discount Price: </p>
+                  <p>{formatRupiah(item.promo_discount_price)}</p>
+                </div>
               </CardContent>
-              <CardFooter className="flex justify-between">
-                {/* Edit */}
-                <Link to={`/dashboard/category/edit-category/${item.id}`}>
-                  <Button variant="outline" className="text-white bg-primary">
-                    Update
-                  </Button>
-                </Link>
-
+              <CardFooter>
                 {/* Delete */}
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
-                    <Button variant="destructive">{isLoading ? "Loading..." : "Delete"}</Button>
+                    <Button variant="destructive">
+                      {isLoading ? "Loading..." : "Delete"}
+                    </Button>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
                       <AlertDialogTitle>
-                        Are you sure delete this category?
+                        Are you sure delete this promo?
                       </AlertDialogTitle>
                       <AlertDialogDescription>
                         This action cannot be undone. This will permanently
@@ -195,4 +191,4 @@ const ListCategoryDashboard = () => {
   );
 };
 
-export default ListCategoryDashboard;
+export default ListPromoDashboard;

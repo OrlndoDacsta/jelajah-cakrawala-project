@@ -8,13 +8,15 @@ import DetailPromo from "@/pages/Promo/DetailPromo";
 import DetailActivity from "@/pages/Activity/DetailActivity";
 import Banner from "@/pages/Banner";
 import Category from "@/pages/Category";
-import Profile from "@/pages/Profile";  
+import Profile from "@/pages/Profile";
 import { Dashboard } from "@/pages/dashboard";
 import ListUser from "@/pages/dashboard/ListUser";
 import BannerDashboard from "@/pages/dashboard/BannerDashboard";
 import EditBannerDashboard from "@/pages/dashboard/BannerDashboard/EditBannerDashboard";
 import CategryDashboard from "@/pages/dashboard/CategoryDashboard";
 import UpdateCategory from "@/pages/dashboard/CategoryDashboard/UpdateCategory";
+import PromoDashboard from "@/pages/dashboard/PromoDashboard";
+import CreatePromo from "@/pages/dashboard/PromoDashboard/CreatePromo";
 
 const routeList = [
   {
@@ -70,6 +72,14 @@ const routeList = [
     element: <UpdateCategory />,
   },
   {
+    path: "/dashboard/promo",
+    element: <PromoDashboard />,
+  },
+  {
+    path: "/dashboard/promo/create-promo",
+    element: <CreatePromo />,
+  },
+  {
     path: "/profile",
     element: <Profile />,
   },
@@ -81,7 +91,6 @@ const routeList = [
     path: "/activity/:id",
     element: <DetailActivity />,
   },
-  
 ];
 
 export default routeList;
