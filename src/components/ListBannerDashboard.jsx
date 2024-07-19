@@ -33,7 +33,7 @@ const ListBannerDashboard = () => {
   const itemsPerPage = 6;
 
   const endOffset = itemOffset + itemsPerPage;
-//   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  //   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentItems = banner.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(banner.length / itemsPerPage);
 
@@ -135,7 +135,6 @@ const ListBannerDashboard = () => {
                 </p>
               </CardContent>
               <CardFooter className="flex justify-between">
-                
                 {/* Edit */}
                 <Link to={`/dashboard/banner/edit-banner/${item.id}`}>
                   <Button variant="outline" className="text-white bg-primary">

@@ -39,15 +39,15 @@ const ListUser = () => {
   const itemsPerPage = 10;
 
   const endOffset = itemOffset + itemsPerPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentItems = users.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(users.length / itemsPerPage);
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % users.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+    // console.log(
+    //   `User requested page number ${event.selected}, which is offset ${newOffset}`
+    // );
     setItemOffset(newOffset);
   };
 
@@ -111,18 +111,18 @@ const ListUser = () => {
               <Table className="text-white bg-primary">
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="w-[150px]">Profile Picture</TableHead>
-                    <TableHead>Email</TableHead>
-                    <TableHead>Phone Number</TableHead>
-                    <TableHead>Role</TableHead>
-                    <TableHead>Action</TableHead>
+                    <TableHead className="w-[150px] text-white">Profile Picture</TableHead>
+                    <TableHead className="text-white">Email</TableHead>
+                    <TableHead className="text-white">Phone Number</TableHead>
+                    <TableHead className="text-white">Role</TableHead>
+                    <TableHead className="text-white">Action</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {currentItems.map((item) => (
                     <TableRow key={item.id}>
                       <TableCell className="font-medium">
-                        <img src={item.profilePictureUrl} alt="profilePicture" className="rounded-full w-[100px] h-[100px] object-cover" />
+                        <img src={item.profilePictureUrl} alt="profilePicture" className="rounded-lg w-[100px] h-[100px] object-cover" />
                       </TableCell>
                       <TableCell>{item.email}</TableCell>
                       <TableCell>{item.phoneNumber}</TableCell>

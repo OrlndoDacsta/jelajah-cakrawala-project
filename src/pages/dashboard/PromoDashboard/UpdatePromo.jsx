@@ -5,8 +5,9 @@ import ResponsiveSideBar from "@/components/ResponsiveSideBar";
 import AvatarDashboard from "@/components/AvatarDashboard";
 import EditCategory from "@/components/EditCategory";
 import LogoDashboard from "@/components/LogoDashboard";
+import EditPromo from "@/components/EditPromo";
 
-const UpdateCategory = () => {
+const UpdatePromo = () => {
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
@@ -34,13 +35,13 @@ const UpdateCategory = () => {
         </header>
         <main className="flex flex-col flex-1 gap-4 p-4 lg:gap-6 lg:p-6">
           <div className="flex justify-between">
-            <h1 className="text-lg font-semibold md:text-2xl">Edit Category</h1>
+            <h1 className="text-lg font-semibold md:text-2xl">Edit Promo</h1>
           </div>
           <div
             className="flex items-center justify-center flex-1 border border-dashed rounded-lg shadow-sm"
             x-chunk="dashboard-02-chunk-1"
           >
-            <EditCategory />
+            <EditPromo />
           </div>
         </main>
       </div>
@@ -48,4 +49,4 @@ const UpdateCategory = () => {
   );
 };
 
-export default UpdateCategory;
+export default UpdatePromo;

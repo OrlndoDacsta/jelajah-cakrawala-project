@@ -2,7 +2,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { formatRupiah } from "@/lib/utils";
-import { format } from "date-fns";
+// import { format } from "date-fns";
+import moment from "moment";
 
 const PromoAtributes = () => {
   const param = useParams();
@@ -63,11 +64,15 @@ const PromoAtributes = () => {
           </tr>
           <tr>
             <td>Created at</td>
-            {/* <td>: {format(new Date (detailPromo.createdAt), "dd MMM yyyy")}</td> */}
+            <td>
+              : {moment(detailPromo.createdAt).format("DD-MM-YYYY hh:mm")}
+            </td>
           </tr>
           <tr>
             <td>Last Update</td>
-            {/* <td>: {format(new Date(detailPromo.updatedAt), "dd MMM yyyy")}</td> */}
+            <td>
+              : {moment(detailPromo.updatedAt).format("DD-MM-YYYY hh:mm")}
+            </td>
           </tr>
         </table>
       </div>

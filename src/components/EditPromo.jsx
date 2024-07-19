@@ -32,18 +32,54 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const CreatePromoDashboard = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [termsAndConditions, setTermsAndConditions] = useState("");
-  const [promoCode, setPromoCode] = useState("");
-  const [minimumPrice, setMinimumPrice] = useState("");
-  const [promoDiscount, setPromoDiscount] = useState("");
-  const [imageUrl, setImageUrl] = useState(null);
-  const { toast } = useToast();
+const EditPromo = () => {
   const navigate = useNavigate();
+  const param = useParams();
+  const [valuePromo, setValuePromo] = useState({
+    title: "",
+    description: "",
+    terms_condition: "",
+    promo_code: "",
+    minimum_claim_price: "",
+    promo_discount_price: "",
+    imageUrl: null,
+  });
+  const { toast } = useToast();
+
+  const getEditPromo = () => {
+    const config = {
+      headers: {
+        apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+      },
+    };
+    axios
+      .get(
+        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/promo/${param.id}`,
+        config
+      )
+      .then((res) => {
+        // console.log(res.data.data);
+        setValuePromo({
+          ...valuePromo,
+          title: res.data.data.title,
+          description: res.data.data.description,
+          terms_condition: res.data.data.terms_condition,
+          promo_code: res.data.data.promo_code,
+          minimum_claim_price: res.data.data.minimum_claim_price,
+          promo_discount_price: res.data.data.promo_discount_price,
+          imageUrl: res.data.data.imageUrl,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
+  useEffect(() => {
+    getEditPromo();
+  }, []);
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -77,69 +113,36 @@ const CreatePromoDashboard = () => {
         config
       );
       //   console.log(res);
-      setImageUrl(res.data.url);
+      setValuePromo({
+        ...valuePromo,
+        imageUrl: res.data.url,
+      });
       toast({ description: res.data.message, variant: "success" });
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
-  };
-
-  const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
-  };
-
-  const handleTermsAndConditionsChange = (event) => {
-    setTermsAndConditions(event.target.value);
-  };
-
-  const handlePromoCodeChange = (event) => {
-    setPromoCode(event.target.value);
-  };
-
-  const handleMinimumPriceChange = (event) => {
-    setMinimumPrice(event.target.value);
-  };
-
-  const handlePromoDiscountChange = (event) => {
-    setPromoDiscount(event.target.value);
-  };
-
-  const handleSubmit = () => {
-    const payload = {
-      title: title,
-      description: description,
-      terms_condition: termsAndConditions,
-      promo_code: promoCode.toUpperCase(),
-      minimum_claim_price: parseInt(minimumPrice),
-      promo_discount_price: parseInt(promoDiscount),
-      imageUrl: imageUrl,
-    };
-
+  const handleUpdate = () => {
     const config = {
       headers: {
         apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k",
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k`,
       },
     };
-
     axios
       .post(
-        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-promo",
-        payload,
+        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-promo/${param.id}`,
+        valuePromo,
         config
       )
       .then((res) => {
-        // console.log(res);
+        // console.log(res.data);
         toast({ description: res.data.message, variant: "success" });
         navigate("/dashboard/promo");
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
         toast({
           description: err.response.data.message,
           variant: "destructive",
@@ -166,7 +169,10 @@ const CreatePromoDashboard = () => {
                       type="text"
                       id="title"
                       placeholder="Title"
-                      onChange={handleTitleChange}
+                      defaultValue={valuePromo.title}
+                      onChange={(e) =>
+                        setValuePromo({ ...valuePromo, title: e.target.value })
+                      }
                     />
                   </div>
                 </div>
@@ -181,8 +187,14 @@ const CreatePromoDashboard = () => {
                     <Textarea
                       type="text"
                       id="description"
-                      onChange={handleDescriptionChange}
                       placeholder="Description promo"
+                      defaultValue={valuePromo.description}
+                      onChange={(e) =>
+                        setValuePromo({
+                          ...valuePromo,
+                          description: e.target.value,
+                        })
+                      }
                     />
                   </div>
                 </div>
@@ -198,7 +210,13 @@ const CreatePromoDashboard = () => {
                       type="text"
                       id="termsAndConditions"
                       placeholder="Terms and Conditions"
-                      onChange={handleTermsAndConditionsChange}
+                      defaultValue={valuePromo.terms_condition}
+                      onChange={(e) =>
+                        setValuePromo({
+                          ...valuePromo,
+                          terms_condition: e.target.value,
+                        })
+                      }
                     />
                   </div>
                 </div>
@@ -214,7 +232,13 @@ const CreatePromoDashboard = () => {
                       type="text"
                       id="promoCode"
                       placeholder="Promo Code"
-                      onChange={handlePromoCodeChange}
+                      defaultValue={valuePromo.promo_code}
+                      onChange={(e) =>
+                        setValuePromo({
+                          ...valuePromo,
+                          promo_code: e.target.value.toUpperCase(),
+                        })
+                      }
                     />
                   </div>
                 </div>
@@ -232,7 +256,13 @@ const CreatePromoDashboard = () => {
                       type="number"
                       id="minimumPrice"
                       placeholder="ex. 100000"
-                      onChange={handleMinimumPriceChange}
+                      defaultValue={valuePromo.minimum_claim_price}
+                      onChange={(e) =>
+                        setValuePromo({
+                          ...valuePromo,
+                          minimum_claim_price: parseInt(e.target.value),
+                        })
+                      }
                     />
                   </div>
                 </div>
@@ -248,7 +278,13 @@ const CreatePromoDashboard = () => {
                       type="number"
                       id="promoDiscount"
                       placeholder="ex. 1000"
-                      onChange={handlePromoDiscountChange}
+                      defaultValue={valuePromo.promo_discount_price}
+                      onChange={(e) =>
+                        setValuePromo({
+                          ...valuePromo,
+                          promo_discount_price: parseInt(e.target.value),
+                        })
+                      }
                     />
                   </div>
                 </div>
@@ -260,15 +296,20 @@ const CreatePromoDashboard = () => {
                     Image
                   </Label>
                   <div className="mt-2">
-                    <Input type="file" id="image" onChange={handleUpload} />
+                    <Input
+                      type="file"
+                      id="image"
+                      onChange={handleUpload}
+                      defaultValue={valuePromo.image}
+                    />
                   </div>
                 </div>
               </section>
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-2">
-            <Button className="w-full" onClick={handleSubmit}>
-              Create
+            <Button className="w-full" onClick={handleUpdate}>
+              Update
             </Button>
             <Button
               className="w-full"
@@ -283,5 +324,4 @@ const CreatePromoDashboard = () => {
     </div>
   );
 };
-
-export default CreatePromoDashboard;
+export default EditPromo;

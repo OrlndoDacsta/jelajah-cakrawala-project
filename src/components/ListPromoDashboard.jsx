@@ -40,9 +40,9 @@ const ListPromoDashboard = () => {
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % promo.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+    // console.log(
+    //   `User requested page number ${event.selected}, which is offset ${newOffset}`
+    // );
     setItemOffset(newOffset);
   };
 
@@ -136,7 +136,13 @@ const ListPromoDashboard = () => {
                   <p>{formatRupiah(item.promo_discount_price)}</p>
                 </div>
               </CardContent>
-              <CardFooter>
+              <CardFooter className="flex justify-between">
+                {/* Edit */}
+                <Link to={`/dashboard/promo/edit-promo/${item.id}`}>
+                  <Button variant="outline" className="text-white bg-primary">
+                    Update
+                  </Button>
+                </Link>
                 {/* Delete */}
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
