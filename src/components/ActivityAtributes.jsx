@@ -33,8 +33,8 @@ const ActivityAtributes = () => {
 
   return (
     <div>
-      <div className="flex flex-col mt-5 font-semibold mb-36">
-        <p className="mb-2 text-2xl font-bold text-center">
+      <div className="flex flex-col mt-5 font-semibold">
+        <p className="mb-4 text-3xl font-bold text-center">
           {detailActivity.title}
         </p>
         <img
@@ -42,24 +42,39 @@ const ActivityAtributes = () => {
           src={detailActivity.imageUrls}
           alt="imgPromo"
         />
-        <div className="absolute flex w-4/6 p-3 mx-auto -translate-x-1/2 bg-gray-300 bg-opacity-25 backdrop-filter backdrop-blur-md top-3/4 left-1/2 rounded-xl">
-          <table className="w-full text-lg">
-            <tr>
-              <td className="font-semibold">Location</td>
-            </tr>
-            <tr>
-              <td>Address</td>
-              <td>: {detailActivity.address}</td>
-            </tr>
-            <tr>
-              <td>City</td>
-              <td>: {detailActivity.city}</td>
-            </tr>
-            <tr>
-              <td>Province</td>
-              <td>: {detailActivity.province}</td>
-            </tr>
-          </table>
+        <div className="flex flex-col w-3/4 gap-10 p-3 mx-auto mt-6 bg-gray-300 bg-opacity-25 backdrop-filter backdrop-blur-md rounded-xl">
+          <div className="flex items-center justify-center gap-5">
+            <table className="w-full text-lg">
+              <tr>
+                <td className="font-semibold">Location</td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td>: {detailActivity.address}</td>
+              </tr>
+              <tr>
+                <td>City</td>
+                <td>: {detailActivity.city}</td>
+              </tr>
+              <tr>
+                <td>Province</td>
+                <td>: {detailActivity.province}</td>
+              </tr>
+              <tr>
+                <td>Category</td>
+                <td>: {detailActivity?.category?.name}</td>
+              </tr>
+              <tr>
+                <td colSpan={2}>
+                  <img src={detailActivity?.category?.imageUrl} alt="" />
+                </td>
+                <td></td>
+              </tr>
+            </table>
+            <div
+              dangerouslySetInnerHTML={{ __html: detailActivity.location_maps }}
+            ></div>
+          </div>
 
           <table className="w-full text-lg">
             <tr>
