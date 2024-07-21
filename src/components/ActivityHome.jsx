@@ -17,6 +17,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const ActivityHome = () => {
   const [activity, setActivity] = useState([]);
@@ -63,33 +64,35 @@ const ActivityHome = () => {
         <CarouselContent>
           {activity.map((item) => (
             <CarouselItem key={item.id} className="basis-1/3">
-              <Card className="w-[250px] hover:scale-95 duration-300 border-none bg-slate-300 pt-5">
-                <CardContent className="flex flex-col items-center justify-center gap-2">
-                  <img
-                    className="object-cover rounded-lg aspect-video"
-                    src={item.imageUrls}
-                    alt="imgActivity"
-                  />
-                  <div className="flex gap-1">
-                    <CardTitle className="text-lg font-bold">
-                      {item.title}
-                    </CardTitle>
-                    <div className="flex justify-center gap-1 px-2 py-1 bg-blue-500 rounded-lg w-fit">
-                      <FaStar className="text-yellow-500" />
-                      <CardDescription className="text-black">
-                        {item.rating}
+              <Link to={"/activity"}>
+                <Card className="w-[250px] hover:scale-95 duration-300 border-none bg-slate-300 pt-5">
+                  <CardContent className="flex flex-col items-center justify-center gap-2">
+                    <img
+                      className="object-cover rounded-lg aspect-video"
+                      src={item.imageUrls}
+                      alt="imgActivity"
+                    />
+                    <div className="flex gap-1">
+                      <CardTitle className="text-lg font-bold">
+                        {item.title}
+                      </CardTitle>
+                      <div className="flex justify-center gap-1 px-2 py-1 bg-blue-500 rounded-lg w-fit">
+                        <FaStar className="text-yellow-500" />
+                        <CardDescription className="text-black">
+                          {item.rating}
+                        </CardDescription>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-1">
+                      <RiMapPin2Fill className="text-yellow-500" />
+                      <CardDescription className="text-sm">
+                        {item.city}, {item.province}
                       </CardDescription>
                     </div>
-                  </div>
-
-                  <div className="flex gap-1">
-                    <RiMapPin2Fill className="text-yellow-500" />
-                    <CardDescription className="text-sm">
-                      {item.city}, {item.province}
-                    </CardDescription>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </Link>
             </CarouselItem>
           ))}
         </CarouselContent>

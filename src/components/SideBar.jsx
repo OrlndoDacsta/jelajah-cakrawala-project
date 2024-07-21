@@ -46,7 +46,7 @@ const SideBar = () => {
           Promo
         </Link>
         <Link
-          href="#"
+          to={"/dashboard/activity"}
           className="flex items-center gap-3 px-3 py-2 transition-all rounded-lg text-muted-foreground hover:text-primary"
         >
           <Car className="w-4 h-4" />

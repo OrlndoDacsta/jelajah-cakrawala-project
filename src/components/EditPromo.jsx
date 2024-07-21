@@ -179,7 +179,7 @@ const EditPromo = () => {
                 <div>
                   <Label
                     htmlFor="description"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
                   >
                     Description
                   </Label>
@@ -201,7 +201,7 @@ const EditPromo = () => {
                 <div>
                   <Label
                     htmlFor="termsAndConditions"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
                   >
                     Terms and Conditions
                   </Label>
@@ -223,7 +223,7 @@ const EditPromo = () => {
                 <div>
                   <Label
                     htmlFor="promoCode"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
                   >
                     Promo Code
                   </Label>
@@ -269,7 +269,7 @@ const EditPromo = () => {
                 <div>
                   <Label
                     htmlFor="promoDiscount"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
                   >
                     Promo Discount
                   </Label>
@@ -291,7 +291,7 @@ const EditPromo = () => {
                 <div>
                   <Label
                     htmlFor="image"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
                   >
                     Image
                   </Label>
@@ -307,7 +307,7 @@ const EditPromo = () => {
               </section>
             </div>
           </CardContent>
-          <CardFooter className="flex flex-col gap-2">
+          <CardFooter className="flex flex-col gap-5">
             <Button className="w-full" onClick={handleUpdate}>
               Update
             </Button>

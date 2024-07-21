@@ -30,7 +30,7 @@ const Navbar = () => {
           <p>Promo</p>
         </Link>
         {isLoggedIn && (
-          <Link to="/dashboard">
+          <Link to="/dashboard/user">
             <p>Dashboard</p>
           </Link>
         )}

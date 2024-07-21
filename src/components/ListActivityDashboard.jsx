@@ -24,9 +24,10 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import ReactPaginate from "react-paginate";
+import { RiMapPin2Fill } from "react-icons/ri";
 
-const ListPromoDashboard = () => {
-  const [promo, setPromo] = useState([]);
+const ListActivityDashboard = () => {
+  const [activity, setActivity] = useState([]);
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [itemOffset, setItemOffset] = useState(0);
@@ -34,21 +35,21 @@ const ListPromoDashboard = () => {
 
   const endOffset = itemOffset + itemsPerPage;
   // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentItems = promo.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(promo.length / itemsPerPage);
+  const currentItems = activity.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(activity.length / itemsPerPage);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % promo.length;
+    const newOffset = (event.selected * itemsPerPage) % activity.length;
     // console.log(
     //   `User requested page number ${event.selected}, which is offset ${newOffset}`
     // );
     setItemOffset(newOffset);
   };
 
-  const getPromo = () => {
+  const getActivity = () => {
     axios
       .get(
-        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/promos",
+        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/activities",
         {
           headers: {
             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
@@ -57,7 +58,7 @@ const ListPromoDashboard = () => {
       )
       .then((res) => {
         // console.log(res);
-        setPromo(res.data.data);
+        setActivity(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -73,7 +74,7 @@ const ListPromoDashboard = () => {
     setIsLoading(true);
     axios
       .delete(
-        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-promo/${id}`,
+        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-activity/${id}`,
         {
           headers: {
             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
@@ -84,7 +85,9 @@ const ListPromoDashboard = () => {
       .then((res) => {
         // console.log(res)
         if (res.data.code === "200") {
-          setPromo((prevItems) => prevItems.filter((item) => item.id !== id));
+          setActivity((prevItems) =>
+            prevItems.filter((item) => item.id !== id)
+          );
           toast({ description: res.data.message, variant: "destructive" });
         }
       })
@@ -99,7 +102,7 @@ const ListPromoDashboard = () => {
   };
 
   useEffect(() => {
-    getPromo();
+    getActivity();
   }, []);
 
   return (
@@ -117,14 +120,14 @@ const ListPromoDashboard = () => {
                 </CardTitle>
                 <CardDescription>
                   <img
-                    src={item.imageUrl}
-                    alt="imgPromo"
+                    src={item.imageUrls}
+                    alt="imgActivity"
                     className="w-full rounded-tl-xl rounded-tr-xl h-[200px] object-cover"
                   />
                 </CardDescription>
               </CardHeader>
               <CardContent>
-              <p>
+                <p>
                   <span className="font-bold">Created: </span>
                   {format(new Date(item.createdAt), "eee, dd MMM yyyy")}
                 </p>
@@ -135,11 +138,11 @@ const ListPromoDashboard = () => {
               </CardContent>
               <CardFooter className="flex justify-between">
                 {/* Edit */}
-                <Link to={`/dashboard/promo/edit-promo/${item.id}`}>
-                  <Button variant="outline" className="text-white bg-primary">
-                    Update
-                  </Button>
-                </Link>
+                {/* <Link to={`/dashboard/promo/edit-promo/${item.id}`}>
+                      <Button variant="outline" className="text-white bg-primary">
+                        Update
+                      </Button>
+                    </Link> */}
                 {/* Delete */}
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
@@ -150,7 +153,7 @@ const ListPromoDashboard = () => {
                   <AlertDialogContent>
                     <AlertDialogHeader>
                       <AlertDialogTitle>
-                        Are you sure delete this promo?
+                        Are you sure delete this activity?
                       </AlertDialogTitle>
                       <AlertDialogDescription>
                         This action cannot be undone. This will permanently
@@ -194,4 +197,4 @@ const ListPromoDashboard = () => {
   );
 };
 
-export default ListPromoDashboard;
+export default ListActivityDashboard;

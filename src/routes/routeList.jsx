@@ -18,6 +18,7 @@ import UpdateCategory from "@/pages/dashboard/CategoryDashboard/UpdateCategory";
 import PromoDashboard from "@/pages/dashboard/PromoDashboard";
 import CreatePromo from "@/pages/dashboard/PromoDashboard/CreatePromo";
 import UpdatePromo from "@/pages/dashboard/PromoDashboard/UpdatePromo";
+import ActivityDashboard from "@/pages/dashboard/ActivityDashboard";
 
 const routeList = [
   {
@@ -83,6 +84,10 @@ const routeList = [
   {
     path: "/dashboard/promo/edit-promo/:id",
     element: <UpdatePromo />,
+  },
+  {
+    path: "/dashboard/activity",
+    element: <ActivityDashboard />,
   },
   {
     path: "/profile",

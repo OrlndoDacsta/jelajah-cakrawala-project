@@ -220,7 +220,7 @@ const FormRegister = () => {
                 type={showpassword ? "text" : "password"}
               />
               <p
-                className="absolute text-gray-500 cursor-pointer right-80"
+                className="absolute text-gray-500 cursor-pointer right-96"
                 onClick={handleShowPassword}
               >
                 {showpassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
@@ -242,7 +242,7 @@ const FormRegister = () => {
                 type={showpasswordRepeat ? "text" : "password"}
               />
               <p
-                className="absolute text-gray-500 cursor-pointer right-9"
+                className="absolute text-gray-500 cursor-pointer right-[102px]"
                 onClick={handleShowPasswordRepeat}
               >
                 {showpasswordRepeat ? (

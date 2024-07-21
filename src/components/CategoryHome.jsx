@@ -15,6 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const CategoryHome = () => {
   const [categories, setCategories] = useState([]);
@@ -59,18 +60,20 @@ const CategoryHome = () => {
         <CarouselContent>
           {categories.map((item) => (
             <CarouselItem key={item.id} className="basis-1/3">
-              <Card className="w-[200px] hover:scale-95 duration-300 border-none pt-5 bg-slate-300">
-                <CardContent className="flex flex-col items-center justify-center gap-1">
-                  <img
-                    className="object-cover rounded-lg aspect-video"
-                    src={item.imageUrl}
-                    alt="imgCategory"
-                  />
-                  <CardTitle className="text-sm font-bold">
-                    {item.name}
-                  </CardTitle>
-                </CardContent>
-              </Card>
+              <Link to={"/category"}>
+                <Card className="w-[200px] hover:scale-95 duration-300 border-none pt-5 bg-slate-300">
+                  <CardContent className="flex flex-col items-center justify-center gap-1">
+                    <img
+                      className="object-cover rounded-lg aspect-video"
+                      src={item.imageUrl}
+                      alt="imgCategory"
+                    />
+                    <CardTitle className="text-sm font-bold">
+                      {item.name}
+                    </CardTitle>
+                  </CardContent>
+                </Card>
+              </Link>
             </CarouselItem>
           ))}
         </CarouselContent>

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {
   Bell,
   CircleUser,
@@ -11,16 +10,18 @@ import {
   ShoppingCart,
   Users,
 } from "lucide-react";
-
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import SideBar from "@/components/SideBar";
 import ResponsiveSideBar from "@/components/ResponsiveSideBar";
 import AvatarDashboard from "@/components/AvatarDashboard";
+import CreateCategory from "@/pages/Category/CreateCategory";
 import LogoDashboard from "@/components/LogoDashboard";
+import ListPromoDashboard from "@/components/ListPromoDashboard";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import ListActivityDashboard from "@/components/ListActivityDashboard";
 
-export function Dashboard() {
+const ActivityDashboard = () => {
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
@@ -31,14 +32,14 @@ export function Dashboard() {
       </div>
       <div className="flex flex-col">
         <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
-        <ResponsiveSideBar />
+          <ResponsiveSideBar />
           <div className="flex-1 w-full">
             <form>
               <div className="relative">
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   type="search"
-                  placeholder="Search user"
+                  placeholder="Search products..."
                   className="w-full pl-8 shadow-none appearance-none bg-background md:w-2/3 lg:w-1/3"
                 />
               </div>
@@ -47,25 +48,22 @@ export function Dashboard() {
           <AvatarDashboard />
         </header>
         <main className="flex flex-col flex-1 gap-4 p-4 lg:gap-6 lg:p-6">
-          <div className="flex items-center">
-            <h1 className="text-lg font-semibold md:text-2xl">Inventory</h1>
+          <div className="flex justify-between">
+            <h1 className="text-lg font-semibold md:text-2xl">List Activity</h1>
+            {/* <Link to="/dashboard/promo/create-promo">
+              <Button>Create New Promo</Button>
+            </Link> */}
           </div>
           <div
             className="flex items-center justify-center flex-1 border border-dashed rounded-lg shadow-sm"
             x-chunk="dashboard-02-chunk-1"
           >
-            <div className="flex flex-col items-center gap-1 text-center">
-              <h3 className="text-2xl font-bold tracking-tight">
-                You have no products
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                You can start selling as soon as you add a product.
-              </p>
-              <Button className="mt-4">Add Product</Button>
-            </div>
+            <ListActivityDashboard />
           </div>
         </main>
       </div>
     </div>
   );
-}
+};
+
+export default ActivityDashboard;

@@ -23,6 +23,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import ReactPaginate from "react-paginate";
 
 const ListCategory = () => {
   const [category, setCategory] = useState([]);

@@ -173,7 +173,7 @@ const CreatePromoDashboard = () => {
                 <div>
                   <Label
                     htmlFor="description"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
                   >
                     Description
                   </Label>
@@ -189,7 +189,7 @@ const CreatePromoDashboard = () => {
                 <div>
                   <Label
                     htmlFor="termsAndConditions"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
                   >
                     Terms and Conditions
                   </Label>
@@ -205,7 +205,7 @@ const CreatePromoDashboard = () => {
                 <div>
                   <Label
                     htmlFor="promoCode"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
                   >
                     Promo Code
                   </Label>
@@ -239,7 +239,7 @@ const CreatePromoDashboard = () => {
                 <div>
                   <Label
                     htmlFor="promoDiscount"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
                   >
                     Promo Discount
                   </Label>
@@ -255,7 +255,7 @@ const CreatePromoDashboard = () => {
                 <div>
                   <Label
                     htmlFor="image"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
                   >
                     Image
                   </Label>
@@ -266,7 +266,7 @@ const CreatePromoDashboard = () => {
               </section>
             </div>
           </CardContent>
-          <CardFooter className="flex flex-col gap-2">
+          <CardFooter className="flex flex-col gap-5">
             <Button className="w-full" onClick={handleSubmit}>
               Create
             </Button>

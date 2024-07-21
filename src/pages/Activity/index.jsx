@@ -27,7 +27,6 @@ const Activity = () => {
             Adventures for All Ages – Fun Activities for Everyone!
           </p>
         </div>
-
         <ListActivity />
       </div>
       <Footer />
