@@ -1,3 +1,9 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useToast } from "@/components/ui/use-toast";
 import {
   Bell,
   CircleUser,
@@ -10,18 +16,18 @@ import {
   ShoppingCart,
   Users,
 } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import SideBar from "@/components/SideBar";
 import ResponsiveSideBar from "@/components/ResponsiveSideBar";
 import AvatarDashboard from "@/components/AvatarDashboard";
 import CreateCategory from "@/pages/Category/CreateCategory";
+import ListCategoryDashboard from "@/components/ListCategoryDashboard";
 import LogoDashboard from "@/components/LogoDashboard";
 import ListPromoDashboard from "@/components/ListPromoDashboard";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import ListActivityDashboard from "@/components/ListActivityDashboard";
+import CreatePromoDashboard from "@/components/CreatePromoDashboard";
+import CreateActivityDashboard from "@/components/CreateActivityDashboard";
 
-const ActivityDashboard = () => {
+const CreateActivity = () => {
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
@@ -49,16 +55,16 @@ const ActivityDashboard = () => {
         </header>
         <main className="flex flex-col flex-1 gap-4 p-4 lg:gap-6 lg:p-6">
           <div className="flex justify-between">
-            <h1 className="text-lg font-semibold md:text-2xl">List Activity</h1>
-            <Link to="/dashboard/activity/create-activity">
-              <Button>Create New Activity</Button>
-            </Link>
+            <h1 className="text-lg font-semibold md:text-2xl">
+              Create New Activity
+            </h1>
           </div>
           <div
             className="flex items-center justify-center flex-1 border border-dashed rounded-lg shadow-sm"
             x-chunk="dashboard-02-chunk-1"
           >
-            <ListActivityDashboard />
+            {/* <CreatePromoDashboard /> */}
+            <CreateActivityDashboard />
           </div>
         </main>
       </div>
@@ -66,4 +72,4 @@ const ActivityDashboard = () => {
   );
 };
 
-export default ActivityDashboard;
+export default CreateActivity;
