@@ -13,13 +13,14 @@ import ButtonLogout from "./ButtonLogout";
 
 const AvatarDashboard = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
+  const isLogin = useSelector((state) => state.user.isLoggedIn);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" size="icon" className="rounded-full">
           <Avatar>
-            <AvatarImage src={userInfo.user.profilePictureUrl} />
+            <AvatarImage src={isLogin ? userInfo.user.profilePictureUrl : ""} />
             <AvatarFallback className="text-xl text-primary">CN</AvatarFallback>
           </Avatar>
           <span className="sr-only">Toggle user menu</span>
@@ -28,7 +29,7 @@ const AvatarDashboard = () => {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>{userInfo.user.name}</DropdownMenuItem>
+        <DropdownMenuItem>{isLogin ? userInfo.user.name : "Guest"}</DropdownMenuItem>
         <DropdownMenuItem>Profile</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem><ButtonLogout /></DropdownMenuItem>

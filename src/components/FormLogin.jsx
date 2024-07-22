@@ -19,6 +19,7 @@ const FormLogin = () => {
   const [token, setToken] = useState("");
   const [error, setError] = useState("");
   const [showpassword, setShowpassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -34,6 +35,7 @@ const FormLogin = () => {
   };
 
   const handleSubmit = () => {
+    setIsLoading(true);
     const payload = {
       email: email,
       password: password,
@@ -133,9 +135,9 @@ const FormLogin = () => {
 
         <button
           className="w-full py-2 text-xl font-bold text-white duration-300 ease-out transform bg-blue-500 rounded-xl hover:rounded-sm hover:bg-blue-800 hover:shadow-2xl hover:-translate-y-1"
-          onClick={handleSubmit}
+          onClick={handleSubmit} disabled={isLoading}
         >
-          Login
+          {isLoading ? "Loading..." : "Login"}
         </button>
       </div>
       <p className="text-center text-gray-500 max-sm:p-2">

@@ -53,6 +53,7 @@ const ListUser = () => {
   const [selectedRole, setSelectedRole] = useState("");
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [open, setOpen] = useState(false);
   const { toast } = useToast();
 
   const endOffset = itemOffset + itemsPerPage;
@@ -125,7 +126,6 @@ const ListUser = () => {
           );
           toast({ description: res.data.message, variant: "destructive" });
         }
-        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -203,11 +203,12 @@ const ListUser = () => {
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <Dialog>
+                      <Dialog >
                         <DialogTrigger asChild>
                           <Button
                             variant="outline"
                             onClick={() => openDialog(item.id, item.role)}
+              
                           >
                             Change
                           </Button>
@@ -234,7 +235,6 @@ const ListUser = () => {
                                 </SelectTrigger>
                                 <SelectContent>
                                   <SelectGroup>
-                                    <SelectLabel>Role</SelectLabel>
                                     <SelectItem value="user">User</SelectItem>
                                     <SelectItem value="admin">Admin</SelectItem>
                                   </SelectGroup>
@@ -242,9 +242,11 @@ const ListUser = () => {
                               </Select>
                             </div>
                           </div>
-                          <DialogFooter>
-                            <Button onClick={updateRole}>{isLoading ? "Loading..." : "Save"}</Button>
-                          </DialogFooter>
+                          <DialogClose className="text-right">
+                            <Button onClick={updateRole}>
+                              {isLoading ? "Loading..." : "Save"}
+                            </Button>
+                          </DialogClose>
                         </DialogContent>
                       </Dialog>
                     </TableCell>

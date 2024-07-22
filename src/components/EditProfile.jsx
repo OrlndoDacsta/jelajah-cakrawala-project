@@ -14,6 +14,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useToast } from "@/components/ui/use-toast";
+import { DialogClose } from "@radix-ui/react-dialog";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/slice/userSlice";
 
 const EditProfile = () => {
   const [valueProfile, setValueProfile] = useState({
@@ -23,6 +26,7 @@ const EditProfile = () => {
     profilePictureUrl: null,
   });
   const { toast } = useToast();
+  const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.userInfo);
 
   const getProfile = () => {
@@ -34,9 +38,7 @@ const EditProfile = () => {
         },
       })
       .then((res) => {
-        // console.log(res);
         setValueProfile({
-          ...valueProfile,
           name: res.data.data.name,
           email: res.data.data.email,
           phoneNumber: res.data.data.phoneNumber,
@@ -110,10 +112,19 @@ const EditProfile = () => {
       .then((res) => {
         // console.log(res.data);
         toast({ description: res.data.message, variant: "success" });
-        window.location.href = "/profile";
+        console.log('here', userInfo.user, valueProfile);
+        dispatch(
+          login({
+            user: {
+              ...userInfo.user,
+              ...valueProfile
+            },
+            token: userInfo.token,
+          })
+        );
       })
       .catch((err) => {
-        console.log(err.response);
+        console.log(err);
         toast({
           description: err.response.data.message,
           variant: "destructive",
@@ -186,9 +197,9 @@ const EditProfile = () => {
             />
           </div>
         </div>
-        <DialogFooter>
+        <DialogClose>
           <Button onClick={handleUpdate}>Save changes</Button>
-        </DialogFooter>
+        </DialogClose>
       </DialogContent>
     </Dialog>
   );

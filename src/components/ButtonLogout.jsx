@@ -21,10 +21,7 @@ const ButtonLogout = () => {
       )
       .then((res) => {
         dispatch(logout());
-
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
