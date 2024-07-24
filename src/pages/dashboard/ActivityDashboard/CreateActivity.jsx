@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState, useEffect } from "react";
@@ -63,7 +62,6 @@ const CreateActivity = () => {
             className="flex items-center justify-center flex-1 border border-dashed rounded-lg shadow-sm"
             x-chunk="dashboard-02-chunk-1"
           >
-            {/* <CreatePromoDashboard /> */}
             <CreateActivityDashboard />
           </div>
         </main>

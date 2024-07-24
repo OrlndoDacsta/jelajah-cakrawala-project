@@ -5,7 +5,7 @@ const DetailPromo = () => {
   return (
     <div>
       <Navbar />
-      <h1 className="mt-5 text-3xl font-bold text-center">
+      <h1 className="pt-20 text-3xl font-bold text-center">
         Discount Information
       </h1>
       <PromoAtributes />

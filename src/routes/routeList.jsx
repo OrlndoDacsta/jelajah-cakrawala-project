@@ -20,6 +20,7 @@ import CreatePromo from "@/pages/dashboard/PromoDashboard/CreatePromo";
 import UpdatePromo from "@/pages/dashboard/PromoDashboard/UpdatePromo";
 import ActivityDashboard from "@/pages/dashboard/ActivityDashboard";
 import CreateActivity from "@/pages/dashboard/ActivityDashboard/CreateActivity";
+import UpdateActivity from "@/pages/dashboard/ActivityDashboard/UpdateActivity";
 
 const routeList = [
   {
@@ -93,6 +94,10 @@ const routeList = [
   {
     path: "/dashboard/activity/create-activity",
     element: <CreateActivity />,
+  },
+  {
+    path: "/dashboard/activity/edit-activity/:id",
+    element: <UpdateActivity />,
   },
   {
     path: "/profile",

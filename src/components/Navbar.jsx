@@ -17,21 +17,21 @@ const Navbar = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   return (
-    <nav className="flex items-center justify-between bg-gray-300 border backdrop-filter backdrop-blur-md bg-opacity-10">
+    <nav className="fixed z-50 flex items-center justify-between w-full h-16 bg-gray-300 border border-gray-200 backdrop-filter backdrop-blur-md bg-opacity-10">
       <img className="w-20 pl-3" src={logoHome} alt="logoHome" />
       <div className="flex gap-10">
         <Link to="/">
-          <p>Home</p>
+          <p className="font-bold duration-200 hover:scale-125">Home</p>
         </Link>
         <Link to="/activity">
-          <p>Activity</p>
+          <p className="font-bold duration-200 hover:scale-125">Activity</p>
         </Link>
         <Link to="/promo">
-          <p>Promo</p>
+          <p className="font-bold duration-200 hover:scale-125">Promo</p>
         </Link>
         {isLoggedIn && (
           <Link to="/dashboard/user">
-            <p>Dashboard</p>
+            <p className="font-bold duration-200 hover:scale-125">Dashboard</p>
           </Link>
         )}
       </div>
@@ -45,13 +45,15 @@ const Navbar = () => {
                 CN
               </AvatarFallback>
             </Avatar>
-            <DropdownMenuTrigger className="px-3 py-1 mr-5 font-semibold text-black bg-blue-500 rounded-lg shadow-lg">
+            <DropdownMenuTrigger className="px-3 py-1 mr-5 font-semibold text-black bg-[#B9B7BD] rounded-lg shadow-lg">
               {userInfo.user.name}
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-blue-500">
+            <DropdownMenuContent className="bg-[#B9B7BD]">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem><Link to="/profile">Profile</Link></DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link to="/profile">Profile</Link>
+              </DropdownMenuItem>
               <DropdownMenuItem>
                 <ButtonLogout />
               </DropdownMenuItem>

@@ -11,12 +11,18 @@ import {
   Car
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Badge } from "@/components/ui/badge";
 
 const SideBar = () => {
   return (
     <div className="flex-1">
       <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
+      <Link
+          to={"/"}
+          className="flex items-center gap-3 px-3 py-2 transition-all rounded-lg text-muted-foreground hover:text-primary "
+        >
+          <Home className="w-4 h-4" />
+          Home
+        </Link>
         <Link
           to={"/dashboard/user"}
           className="flex items-center gap-3 px-3 py-2 transition-all rounded-lg text-muted-foreground hover:text-primary "

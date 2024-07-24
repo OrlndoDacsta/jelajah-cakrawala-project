@@ -13,7 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Select,
   SelectContent,
@@ -24,23 +24,85 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const CreateActivityDashboard = () => {
-  const { toast } = useToast();
+const EditActivity = () => {
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [priceDiscount, setPriceDiscount] = useState("");
-  const [rating, setRating] = useState("");
-  const [totalReviews, setTotalReviews] = useState("");
-  const [facilities, setFacilities] = useState("");
-  const [address, setAddress] = useState("");
-  const [province, setProvince] = useState("");
-  const [city, setCity] = useState("");
-  const [locationMaps, setLocationMaps] = useState("");
+  const param = useParams();
   const [allCategory, setAllCategory] = useState([]);
-  const [categoryId, setCategoryId] = useState("");
-  const [imageUrls, setImageUrls] = useState([]);
+  const [valueActivity, setValueActivity] = useState({
+    title: "",
+    description: "",
+    price: "",
+    price_discount: "",
+    total_reviews: "",
+    facilities: "",
+    address: "",
+    province: "",
+    city: "",
+    location_maps: "",
+    categoryId: "",
+    imageUrls: [],
+    rating: "",
+  });
+  const { toast } = useToast();
+
+  const getEditActivity = () => {
+    const config = {
+      headers: {
+        apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+      },
+    };
+
+    axios
+      .get(
+        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/activity/${param.id}`,
+        config
+      )
+      .then((res) => {
+        // console.log(res.data.data);
+        setValueActivity({
+          ...valueActivity,
+          title: res.data.data.title,
+          description: res.data.data.description,
+          price: res.data.data.price,
+          price_discount: res.data.data.price_discount,
+          total_reviews: res.data.data.total_reviews,
+          facilities: res.data.data.facilities,
+          address: res.data.data.address,
+          province: res.data.data.province,
+          city: res.data.data.city,
+          location_maps: res.data.data.location_maps,
+          categoryId: res.data.data.categoryId,
+          imageUrls: res.data.data.imageUrls,
+          rating: res.data.data.rating,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
+  const getCategory = () => {
+    axios
+      .get(
+        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/categories",
+        {
+          headers: {
+            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+          },
+        }
+      )
+      .then((res) => {
+        setAllCategory(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getEditActivity();
+    getCategory();
+  }, []);
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -82,117 +144,28 @@ const CreateActivityDashboard = () => {
     }
   };
 
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
-  };
-
-  const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
-  };
-
-  const handlePriceChange = (event) => {
-    setPrice(event.target.value);
-  };
-
-  const handlePriceDiscountChange = (event) => {
-    setPriceDiscount(event.target.value);
-  };
-
-  const handleTotalReviewsChange = (event) => {
-    setTotalReviews(event.target.value);
-  };
-
-  const handleFacilitiesChange = (event) => {
-    setFacilities(event.target.value);
-  };
-
-  const handleAddressChange = (event) => {
-    setAddress(event.target.value);
-  };
-
-  const handleProvinceChange = (event) => {
-    setProvince(event.target.value);
-  };
-
-  const handleCityChange = (event) => {
-    setCity(event.target.value);
-  };
-
-  const handleLocationMapsChange = (event) => {
-    setLocationMaps(event.target.value);
-  };
-
-  const handleCategoryIdChange = (value) => {
-    // console.log(event);
-    setCategoryId(value);
-    // console.log(event.target.value);
-  };
-
-  const handleRatingChange = (value) => {
-    setRating(value);
-    // console.log(value);
-  };
-
-  const getCategory = () => {
-    axios
-      .get(
-        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/categories",
-        {
-          headers: {
-            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-          },
-        }
-      )
-      .then((res) => {
-        setAllCategory(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  useEffect(() => {
-    getCategory();
-  }, []);
-
-  const handleCreate = () => {
-    const payload = {
-      title: title,
-      description: description,
-      price: parseInt(price),
-      price_discount: parseInt(priceDiscount),
-      total_reviews: parseInt(totalReviews),
-      facilities: facilities,
-      address: address,
-      province: province,
-      city: city,
-      location_maps: locationMaps,
-      categoryId: categoryId,
-      imageUrls: imageUrls,
-      rating: rating,
-    };
-
+  const handleUpdate = (e) => {
+    e.preventDefault();
     const config = {
       headers: {
         apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k",
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k`,
       },
     };
 
     axios
       .post(
-        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-activity",
-        payload,
+        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-activity/${param.id}`,
+        valueActivity,
         config
       )
       .then((res) => {
-        // console.log(res);
+        // console.log(res.data);
         toast({ description: res.data.message, variant: "success" });
         navigate("/dashboard/activity");
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
         toast({
           description: err.response.data.message,
           variant: "destructive",
@@ -201,7 +174,7 @@ const CreateActivityDashboard = () => {
   };
 
   return (
-    <div className="w-full p-5 shadow-2xl">
+    <div className="w-full p-5">
       <div>
         <Card className="shadow-2xl bg-slate-200">
           <CardContent className="p-5">
@@ -219,7 +192,13 @@ const CreateActivityDashboard = () => {
                       type="text"
                       id="title"
                       placeholder="Title"
-                      onChange={handleTitleChange}
+                      defaultValue={valueActivity.title}
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          title: e.target.value,
+                        });
+                      }}
                     />
                   </div>
                 </div>
@@ -234,7 +213,13 @@ const CreateActivityDashboard = () => {
                     <Textarea
                       type="text"
                       id="description"
-                      onChange={handleDescriptionChange}
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          description: e.target.value,
+                        });
+                      }}
+                      defaultValue={valueActivity.description}
                       placeholder="Description promo"
                     />
                   </div>
@@ -247,24 +232,23 @@ const CreateActivityDashboard = () => {
                     Category
                   </Label>
                   <div className="mt-2">
-                    <Select
-                      id="categoryid"
-                      onValueChange={handleCategoryIdChange}
+                    <select
+                      id="rating"
+                      value={valueActivity.categoryId}
+                      className="w-[180px] p-2 border rounded-lg"
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          categoryId: e.target.value,
+                        });
+                      }}
                     >
-                      <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Select Category" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>Category</SelectLabel>
-                          {allCategory.map((category) => (
-                            <SelectItem key={category.id} value={category.id}>
-                              {category.name}
-                            </SelectItem>
-                          ))}
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
+                      {allCategory.map((category) => (
+                        <option key={category.id} value={category.id}>
+                          {category.name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
                 <div>
@@ -279,7 +263,13 @@ const CreateActivityDashboard = () => {
                       type="number"
                       id="price"
                       placeholder="ex. 100000"
-                      onChange={handlePriceChange}
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          price: parseInt(e.target.value),
+                        });
+                      }}
+                      defaultValue={valueActivity.price}
                     />
                   </div>
                 </div>
@@ -295,33 +285,41 @@ const CreateActivityDashboard = () => {
                       type="number"
                       id="priceDiscount"
                       placeholder="ex. 100000"
-                      onChange={handlePriceDiscountChange}
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          price_discount: parseInt(e.target.value),
+                        });
+                      }}
+                      defaultValue={valueActivity.price_discount}
                     />
                   </div>
                 </div>
                 <div>
                   <Label
-                    htmlFor="promoDiscount"
+                    htmlFor="rating"
                     className="block mt-2 text-sm font-medium leading-6 text-gray-900"
                   >
                     Rating
                   </Label>
                   <div className="mt-2">
-                    <Select id="rating" onValueChange={handleRatingChange}>
-                      <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Give Rating" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>Rating</SelectLabel>
-                          <SelectItem value="1">1</SelectItem>
-                          <SelectItem value="2">2</SelectItem>
-                          <SelectItem value="3">3</SelectItem>
-                          <SelectItem value="4">4</SelectItem>
-                          <SelectItem value="5">5</SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
+                    <select
+                      id="rating"
+                      value={valueActivity.rating}
+                      className="w-[180px] p-2 border rounded-lg"
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          rating: e.target.value,
+                        });
+                      }}
+                    >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
                   </div>
                 </div>
                 <div>
@@ -336,7 +334,13 @@ const CreateActivityDashboard = () => {
                       type="text"
                       id="totalReview"
                       placeholder="Total Review"
-                      onChange={handleTotalReviewsChange}
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          total_review: e.target.value,
+                        });
+                      }}
+                      defaultValue={valueActivity.total_reviews}
                     />
                   </div>
                 </div>
@@ -354,7 +358,13 @@ const CreateActivityDashboard = () => {
                       type="text"
                       id="facilities"
                       placeholder="Facilities"
-                      onChange={handleFacilitiesChange}
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          facilities: e.target.value,
+                        });
+                      }}
+                      defaultValue={valueActivity.facilities}
                     />
                   </div>
                 </div>
@@ -370,7 +380,13 @@ const CreateActivityDashboard = () => {
                       type="text"
                       id="address"
                       placeholder="Address"
-                      onChange={handleAddressChange}
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          address: e.target.value,
+                        });
+                      }}
+                      defaultValue={valueActivity.address}
                     />
                   </div>
                 </div>
@@ -386,7 +402,13 @@ const CreateActivityDashboard = () => {
                       type="text"
                       id="province"
                       placeholder="Province"
-                      onChange={handleProvinceChange}
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          province: e.target.value,
+                        });
+                      }}
+                      defaultValue={valueActivity.province}
                     />
                   </div>
                 </div>
@@ -402,7 +424,13 @@ const CreateActivityDashboard = () => {
                       type="text"
                       id="city"
                       placeholder="City"
-                      onChange={handleCityChange}
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          city: e.target.value,
+                        });
+                      }}
+                      defaultValue={valueActivity.city}
                     />
                   </div>
                 </div>
@@ -418,7 +446,13 @@ const CreateActivityDashboard = () => {
                       type="text"
                       id="location"
                       placeholder="Location"
-                      onChange={handleLocationMapsChange}
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          location_maps: e.target.value,
+                        });
+                      }}
+                      defaultValue={valueActivity.location_maps}
                     />
                   </div>
                 </div>
@@ -430,15 +464,20 @@ const CreateActivityDashboard = () => {
                     Image
                   </Label>
                   <div className="mt-2">
-                    <Input type="file" id="image" onChange={handleUpload} />
+                    <Input
+                      type="file"
+                      id="image"
+                      onChange={handleUpload}
+                      defaultValue={valueActivity.imageUrls}
+                    />
                   </div>
                 </div>
               </section>
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-5">
-            <Button className="w-full" onClick={handleCreate}>
-              Create
+            <Button className="w-full" onClick={handleUpdate}>
+              Update
             </Button>
             <Button
               className="w-full"
@@ -454,4 +493,4 @@ const CreateActivityDashboard = () => {
   );
 };
 
-export default CreateActivityDashboard;
+export default EditActivity;

@@ -138,11 +138,11 @@ const ListActivityDashboard = () => {
               </CardContent>
               <CardFooter className="flex justify-between">
                 {/* Edit */}
-                {/* <Link to={`/dashboard/promo/edit-promo/${item.id}`}>
+                <Link to={`/dashboard/activity/edit-activity/${item.id}`}>
                       <Button variant="outline" className="text-white bg-primary">
                         Update
                       </Button>
-                    </Link> */}
+                    </Link>
                 {/* Delete */}
                 <AlertDialog>
                   <AlertDialogTrigger asChild>

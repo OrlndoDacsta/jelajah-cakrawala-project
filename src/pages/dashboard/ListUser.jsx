@@ -169,7 +169,7 @@ const ListUser = () => {
             className="flex flex-col flex-1 border border-dashed rounded-lg shadow-sm"
             x-chunk="dashboard-02-chunk-1"
           >
-            <Table className="text-white bg-primary">
+            <Table className="text-white bg-[#868B8E]">
               <TableHeader>
                 <TableRow>
                   <TableHead className="w-[150px] text-white">
@@ -203,12 +203,12 @@ const ListUser = () => {
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <Dialog >
+                      <Dialog>
                         <DialogTrigger asChild>
                           <Button
                             variant="outline"
                             onClick={() => openDialog(item.id, item.role)}
-              
+                            className="bg-[#B9B7BD]"
                           >
                             Change
                           </Button>

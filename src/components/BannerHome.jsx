@@ -43,7 +43,7 @@ const BannerHome = () => {
 
   return (
     <Carousel
-      className="w-1/2 max-sm:w-3/4"
+      className="w-1/2 mt-20 max-sm:w-3/4 max-sm:mt-0"
       plugins={[
         Autoplay({
           delay: 2000,
