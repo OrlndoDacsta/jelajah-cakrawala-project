@@ -125,7 +125,7 @@ const EditCategory = () => {
   return (
     <form onSubmit={handleUpdate}>
       <div className="flex items-center justify-center p-5 mt-5">
-        <Card className="w-1/2 p-3 bg-gray-300 border shadow-2xl backdrop-filter backdrop-blur-md bg-opacity-10">
+        <Card className="w-1/2 p-3 bg-gray-300 border shadow-2xl backdrop-filter backdrop-blur-md bg-opacity-10 max-sm:w-3/4">
           <CardHeader className="text-3xl font-bold">
             <CardContent>
               <img

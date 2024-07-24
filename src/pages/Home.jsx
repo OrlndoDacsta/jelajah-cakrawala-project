@@ -36,12 +36,12 @@ const Home = () => {
     <div>
       <Navbar />
       <div className="w-11/12 mx-auto">
-        <section className="flex items-center justify-center gap-2 p-5">
-          <div className="flex flex-col w-1/2 gap-5">
-            <h1 className="text-[40px] font-bold">
+        <section className="flex items-center justify-center gap-2 p-5 max-sm:flex-col max-sm:gap-4">
+          <div className="flex flex-col items-center w-1/2 gap-5 max-sm:w-3/4 max-sm:justify-center">
+            <h1 className="text-[40px] font-bold max-sm:text-xl max-sm:text-center">
               Left your footsteps all over the world
             </h1>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 max-sm:text-xs max-sm:text-center">
               Welcome to Jelajah Cakrawala, your ultimate travel companion for
               exploring the world with ease and convenience. Our mission is to
               make your travel planning seamless, enjoyable, and memorable by
@@ -54,36 +54,36 @@ const Home = () => {
         </section>
 
         <section className="flex flex-col items-center justify-center gap-5 p-5">
-          <h1 className="text-3xl font-bold">Why Choose Us?</h1>
-          <div className="flex items-center justify-center gap-5">
-            <Card className="w-1/3 border-none">
+          <h1 className="text-3xl font-bold max-sm:text-2xl">Why Choose Us?</h1>
+          <div className="flex items-center justify-center gap-5 max-sm:flex-col">
+            <Card className="w-1/3 border-none max-sm:w-3/4">
               <CardContent className="flex flex-col items-center justify-center gap-2">
                 <img src={findPlace} alt="findPlace" />
-                <CardTitle className="text-2xl font-bold">Find Place</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-2xl font-bold max-sm:text-lg max-sm:font-semibold">Find Place</CardTitle>
+                <CardDescription className="max-sm:text-xs max-sm:text-center">
                   Find the best place to visit in your destination and holiday.
                 </CardDescription>
               </CardContent>
             </Card>
-            <Card className="w-1/3 border-none">
+            <Card className="w-1/3 border-none max-sm:w-3/4">
               <CardContent className="flex flex-col items-center justify-center gap-2">
                 <img src={userFriendly} alt="findPlace" />
-                <CardTitle className="text-2xl font-bold">
+                <CardTitle className="text-2xl font-bold max-sm:text-lg max-sm:font-semibold">
                   User Friendly
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="max-sm:text-xs max-sm:text-center">
                   Our website and app are designed with you in mind, offering an
                   intuitive interface for easy navigation.
                 </CardDescription>
               </CardContent>
             </Card>
-            <Card className="w-1/3 border-none">
+            <Card className="w-1/3 border-none max-sm:w-3/4">
               <CardContent className="flex flex-col items-center justify-center gap-2">
                 <img src={travelInspiration} alt="findPlace" />
-                <CardTitle className="text-2xl font-bold">
+                <CardTitle className="text-2xl font-bold max-sm:text-lg max-sm:font-semibold">
                   Travel Inspiration
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="max-sm:text-xs max-sm:text-center">
                   Stay updated with the latest travel trends, tips, and
                   destination recommendations.
                 </CardDescription>

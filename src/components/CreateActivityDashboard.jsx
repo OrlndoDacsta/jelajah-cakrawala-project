@@ -93,7 +93,8 @@ const CreateActivityDashboard = () => {
         config
       );
       //   console.log(res);
-      setImageUrls(res.data.url);
+      // setImageUrls(res.data.url);
+      setImageUrls((prevUrls) => [...prevUrls, res.data.url]);
       toast({ description: res.data.message, variant: "success" });
     } catch (error) {
       console.log(error);
@@ -183,8 +184,8 @@ const CreateActivityDashboard = () => {
       city: city,
       location_maps: locationMaps,
       categoryId: categoryId,
-      image_url: imageUrls,
-      rating: parseInt(rating),
+      imageUrls: imageUrls,
+      rating: rating,
     };
 
     const config = {
@@ -262,7 +263,7 @@ const CreateActivityDashboard = () => {
                     Category
                   </Label>
                   <div className="mt-2">
-                    <Select id="categoryid">
+                    <Select id="categoryid" >
                       <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Select Category" />
                       </SelectTrigger>
@@ -273,7 +274,7 @@ const CreateActivityDashboard = () => {
                             <SelectItem
                               onChange={handleCategoryIdChange}
                               key={category.id}
-                              value={category.name}
+                              value={category.id}
                             >
                               {category.name}
                             </SelectItem>
@@ -325,26 +326,41 @@ const CreateActivityDashboard = () => {
                     Rating
                   </Label>
                   <div className="mt-2">
-                    <Select id="categoryid">
+                    <Select id="rating">
                       <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Give Rating" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
                           <SelectLabel>Rating</SelectLabel>
-                          <SelectItem onChange={handleRatingChange} value="1">
+                          <SelectItem
+                           onChange={handleRatingChange}
+                            value='1'
+                          >
                             1
                           </SelectItem>
-                          <SelectItem onChange={handleRatingChange} value="2">
+                          <SelectItem
+                            onChange={handleRatingChange}
+                            value='2'
+                          >
                             2
                           </SelectItem>
-                          <SelectItem onChange={handleRatingChange} value="3">
+                          <SelectItem
+                            onChange={handleRatingChange}
+                            value={3}
+                          >
                             3
                           </SelectItem>
-                          <SelectItem onChange={handleRatingChange} value="4">
+                          <SelectItem
+                            onChange={handleRatingChange}
+                            value={4}
+                          >
                             4
                           </SelectItem>
-                          <SelectItem onChange={handleRatingChange} value="5">
+                          <SelectItem
+                           onChange={handleRatingChange}
+                            value={5}
+                          >
                             5
                           </SelectItem>
                         </SelectGroup>

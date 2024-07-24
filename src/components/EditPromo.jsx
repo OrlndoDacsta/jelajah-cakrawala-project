@@ -155,8 +155,8 @@ const EditPromo = () => {
       <div>
         <Card>
           <CardContent className="p-5">
-            <div className="flex gap-10">
-              <section className="w-1/2">
+            <div className="flex gap-10 max-sm:flex-col max-sm:gap-3">
+              <section className="w-1/2 max-sm:w-full">
                 <div>
                   <Label
                     htmlFor="title"
@@ -243,7 +243,7 @@ const EditPromo = () => {
                   </div>
                 </div>
               </section>
-              <section className="w-1/2">
+              <section className="w-1/2 max-sm:w-full">
                 <div>
                   <Label
                     htmlFor="minimumPrice"

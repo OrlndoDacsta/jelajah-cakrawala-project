@@ -47,10 +47,10 @@ const ActivityHome = () => {
 
   return (
     <section className="flex flex-col items-center justify-center w-3/4 p-5 mx-auto mt-10 bg-gray-300 border rounded-xl backdrop-filter backdrop-blur-md bg-opacity-10">
-      <h1 className="text-3xl font-bold">
+      <h1 className="text-3xl font-bold max-sm:text-xl max-sm:text-center">
         Create Memories with Every Activity
       </h1>
-      <p className="text-gray-500">
+      <p className="text-gray-500 max-sm:text-sm max-sm:text-center">
         "Suggest that each activity will lead to lasting and cherished
         memories."
       </p>
@@ -59,7 +59,7 @@ const ActivityHome = () => {
           align: "start",
           loop: true,
         }}
-        className="w-11/12 mt-10"
+        className="w-11/12 mt-10 max-sm:hidden"
       >
         <CarouselContent>
           {activity.map((item) => (
@@ -98,6 +98,52 @@ const ActivityHome = () => {
         </CarouselContent>
         <CarouselPrevious className="bg-blue-500" />
         <CarouselNext className="bg-blue-500" />
+      </Carousel>
+
+      <Carousel
+        className="w-9/12 mt-5 sm:hidden"
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+      >
+        <CarouselContent>
+          {activity.map((item) => (
+            <CarouselItem key={item.id}>
+              <div>
+                <Card>
+                  <CardContent className="flex flex-col items-center justify-center gap-2 mt-5">
+                    <img
+                      className="object-cover rounded-lg aspect-video"
+                      src={item.imageUrls}
+                      alt="imgActivity"
+                    />
+                    <div className="flex flex-col items-center justify-center gap-1">
+                      <CardTitle className="text-xs font-bold">
+                        {item.title}
+                      </CardTitle>
+                      <div className="flex justify-center p-1 bg-blue-500 rounded-full w-fit">
+                        <FaStar className="w-1/2 text-yellow-500" />
+                        <CardDescription className="text-xs text-black">
+                          {item.rating}
+                        </CardDescription>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-1">
+                      <RiMapPin2Fill className="text-yellow-500" />
+                      <CardDescription className="text-xs">
+                        {item.city}, {item.province}
+                      </CardDescription>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
       </Carousel>
     </section>
   );

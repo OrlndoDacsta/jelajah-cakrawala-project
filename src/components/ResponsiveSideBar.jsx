@@ -1,19 +1,19 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import {
-    Bell,
-    CircleUser,
-    Home,
-    LineChart,
-    Menu,
-    Package,
-    Package2,
-    Search,
-    ShoppingCart,
-    Users,
-  } from "lucide-react";
+  BadgePercent,
+  Car,
+  Home,
+  LineChart,
+  Menu,
+  Package,
+  Package2,
+  Search,
+  ShoppingCart,
+  Users,
+} from "lucide-react";
 import { Link } from "react-router-dom";
-import{ Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 const ResponsiveSideBar = () => {
   return (
     <Sheet>
@@ -29,46 +29,49 @@ const ResponsiveSideBar = () => {
             href="#"
             className="flex items-center gap-2 text-lg font-semibold"
           >
-            <Package2 className="w-6 h-6" />
-            <span className="sr-only">Acme Inc</span>
+            <span className="sr-only">Jelajah Cakrawala</span>
           </Link>
           <Link
-            href="#"
+            to={"/"}
             className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
           >
             <Home className="w-5 h-5" />
-            Dashboard
+            Home
           </Link>
           <Link
-            href="#"
-            className="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
-          >
-            <ShoppingCart className="w-5 h-5" />
-            Orders
-            <Badge className="flex items-center justify-center w-6 h-6 ml-auto rounded-full shrink-0">
-              6
-            </Badge>
-          </Link>
-          <Link
-            href="#"
-            className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-          >
-            <Package className="w-5 h-5" />
-            Products
-          </Link>
-          <Link
-            href="#"
+            to={"/dashboard/user"}
             className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
           >
             <Users className="w-5 h-5" />
-            Customers
+            Users
           </Link>
           <Link
-            href="#"
+            to={"/dashboard/banner"}
             className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
           >
-            <LineChart className="w-5 h-5" />
-            Analytics
+            <Package2 className="w-5 h-5" />
+            Banner
+          </Link>
+          <Link
+            to={"/dashboard/category"}
+            className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+          >
+            <Package className="w-5 h-5" />
+            Category
+          </Link>
+          <Link
+            to={"/dashboard/promo"}
+            className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+          >
+            <BadgePercent className="w-5 h-5" />
+            Promo
+          </Link>
+          <Link
+            to={"/dashboard/activity"}
+            className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+          >
+            <Car className="w-4 h-4" />
+            Activity
           </Link>
         </nav>
       </SheetContent>

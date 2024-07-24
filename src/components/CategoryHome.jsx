@@ -45,8 +45,10 @@ const CategoryHome = () => {
 
   return (
     <section className="flex flex-col items-center justify-center w-3/4 p-5 mx-auto mt-10 bg-gray-300 border backdrop-filter backdrop-blur-md bg-opacity-10">
-      <h1 className="text-3xl font-bold">Choose Your Dream Destination</h1>
-      <p className="text-gray-500">
+      <h1 className="text-3xl font-bold max-sm:text-xl max-sm:text-center">
+        Choose Your Dream Destination
+      </h1>
+      <p className="text-gray-500 max-sm:text-sm max-sm:text-center">
         "Highlight the opportunity for users to pick a place they've always
         wanted to visit."
       </p>
@@ -55,7 +57,7 @@ const CategoryHome = () => {
           align: "start",
           loop: true,
         }}
-        className="w-10/12 mt-10"
+        className="w-10/12 mt-10 max-sm:hidden"
       >
         <CarouselContent>
           {categories.map((item) => (
@@ -79,6 +81,37 @@ const CategoryHome = () => {
         </CarouselContent>
         <CarouselPrevious className="bg-blue-500" />
         <CarouselNext className="bg-blue-500" />
+      </Carousel>
+
+      <Carousel
+        className="w-9/12 mt-5 sm:hidden"
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+      >
+        <CarouselContent>
+          {categories.map((item) => (
+            <CarouselItem key={item.id}>
+              <div>
+                <Card>
+                  <CardContent className="flex flex-col items-center justify-center gap-1 mt-5">
+                  <img
+                      className="object-cover w-full rounded-lg"
+                      src={item.imageUrl}
+                      alt="imgCategory"
+                    />
+                    <CardTitle className="text-sm font-bold">
+                      {item.name}
+                    </CardTitle>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
       </Carousel>
     </section>
   );

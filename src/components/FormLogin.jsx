@@ -94,26 +94,30 @@ const FormLogin = () => {
 
   return (
     <div className="flex flex-col justify-center gap-5 p-5 border shadow-2xl w-110 max-sm:w-full rounded-3xl">
-      <p className="text-sm text-gray-500">Welcome to Jelajah Cakrawala</p>
-      <h1 className="text-3xl font-bold">Login with</h1>
+      <p className="text-sm text-gray-500 max-sm:text-xs max-sm:text-center">
+        Welcome to Jelajah Cakrawala
+      </p>
+      <h1 className="text-3xl font-bold max-sm:text-center max-sm:text-xl">
+        Login with
+      </h1>
       <div>
-        <div className="mb-2">
-          <label htmlFor="email" className="text-gray-500">
+        <div className="mb-2 max-sm:mb-0">
+          <label htmlFor="email" className="text-gray-500 max-sm:text-xs">
             Email
           </label>
         </div>
 
-        <div className="flex items-center justify-center mb-5">
+        <div className="flex items-center justify-center mb-5 max-sm:mb-2">
           <MdEmail className="text-gray-500" />
           <input
-            className="p-3 text-black transition-colors duration-300 ease-out delay-300 bg-transparent border-b w-96 focus:outline-none focus:border-blue-500 max-sm:w-60"
+            className="p-3 text-black transition-colors duration-300 ease-out delay-300 bg-transparent border-b w-96 focus:outline-none focus:border-blue-500 max-sm:text-xs"
             onChange={handleEmailChange}
             placeholder="Email"
           />
         </div>
 
-        <div className="mb-2">
-          <label htmlFor="password" className="text-gray-500">
+        <div className="mb-2 max-sm:mb-0">
+          <label htmlFor="password" className="text-gray-500 max-sm:text-xs">
             Password
           </label>
         </div>
@@ -121,7 +125,7 @@ const FormLogin = () => {
         <div className="flex items-center justify-center">
           <FaLock className="text-gray-500" />
           <input
-            className="p-3 text-black transition-colors duration-300 ease-linear delay-300 bg-transparent border-b w-96 focus:outline-none focus:border-blue-500 max-sm:w-60"
+            className="p-3 text-black transition-colors duration-300 ease-linear delay-300 bg-transparent border-b w-96 focus:outline-none focus:border-blue-500 max-sm:text-xs"
             onChange={handlePasswordChange}
             placeholder="Password"
             type={showpassword ? "text" : "password"}
@@ -133,14 +137,17 @@ const FormLogin = () => {
           <label className="text-xs text-gray-500">Show Password</label>
         </div>
 
-        <button
-          className="w-full py-2 text-xl font-bold text-white duration-300 ease-out transform bg-blue-500 rounded-xl hover:rounded-sm hover:bg-blue-800 hover:shadow-2xl hover:-translate-y-1"
-          onClick={handleSubmit} disabled={isLoading}
-        >
-          {isLoading ? "Loading..." : "Login"}
-        </button>
+        <div className="flex items-center justify-center">
+          <button
+            className="w-full py-2 text-xl font-bold text-white duration-300 ease-out transform bg-blue-500 rounded-xl hover:rounded-sm hover:bg-blue-800 hover:shadow-2xl hover:-translate-y-1 max-sm:text-lg max-sm:w-3/4"
+            onClick={handleSubmit}
+            disabled={isLoading}
+          >
+            {isLoading ? "Loading..." : "Login"}
+          </button>
+        </div>
       </div>
-      <p className="text-center text-gray-500 max-sm:p-2">
+      <p className="text-center text-gray-500 max-sm:text-xs">
         Don't have an account?{" "}
         <Link to="/register" className="text-gray-500 hover:text-blue-500">
           Register

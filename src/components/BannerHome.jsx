@@ -43,7 +43,7 @@ const BannerHome = () => {
 
   return (
     <Carousel
-      className="w-1/2"
+      className="w-1/2 max-sm:w-3/4"
       plugins={[
         Autoplay({
           delay: 2000,
@@ -56,13 +56,13 @@ const BannerHome = () => {
             <Card className="flex flex-col items-center w-full pt-5 bg-gray-300 border backdrop-filter backdrop-blur-md bg-opacity-10">
               <CardContent>
                 <img
-                  className="w-[500px] h-[300px] object-cover rounded-xl"
+                  className="w-[500px] h-[300px] object-cover rounded-xl max-sm:w-[300px] max-sm:h-[200px]"
                   src={banner.imageUrl}
                   alt={banner.title}
                 />
               </CardContent>
               <CardFooter>
-                <h2 className="text-2xl">{banner.name}</h2>
+                <h2 className="text-2xl max-sm:text-xl">{banner.name}</h2>
               </CardFooter>
             </Card>
           </CarouselItem>
