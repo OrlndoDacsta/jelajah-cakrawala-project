@@ -206,7 +206,7 @@ const CreateActivityDashboard = () => {
         <Card className="shadow-2xl bg-slate-200">
           <CardContent className="p-5">
             <div className="flex gap-10">
-              <section className="w-1/2">
+              <section className="w-1/2 max-sm:w-full">
                 <div>
                   <Label
                     htmlFor="title"
@@ -340,8 +340,100 @@ const CreateActivityDashboard = () => {
                     />
                   </div>
                 </div>
+
+                <div className="max-sm:hidden">
+                  <Label
+                    htmlFor="facilities"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Facilities
+                  </Label>
+                  <div>
+                    <Input
+                      type="text"
+                      id="facilities"
+                      placeholder="Facilities"
+                      onChange={handleFacilitiesChange}
+                    />
+                  </div>
+                </div>
+                <div className="max-sm:hidden">
+                  <Label
+                    htmlFor="address"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Address
+                  </Label>
+                  <div className="mt-2">
+                    <Textarea
+                      type="text"
+                      id="address"
+                      placeholder="Address"
+                      onChange={handleAddressChange}
+                    />
+                  </div>
+                </div>
+                <div className="max-sm:hidden"> 
+                  <Label
+                    htmlFor="province"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Province
+                  </Label>
+                  <div className="mt-2">
+                    <Input
+                      type="text"
+                      id="province"
+                      placeholder="Province"
+                      onChange={handleProvinceChange}
+                    />
+                  </div>
+                </div>
+                <div className="max-sm:hidden">
+                  <Label
+                    htmlFor="city"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
+                  >
+                    City
+                  </Label>
+                  <div className="mt-2">
+                    <Input
+                      type="text"
+                      id="city"
+                      placeholder="City"
+                      onChange={handleCityChange}
+                    />
+                  </div>
+                </div>
+                <div className="max-sm:hidden">
+                  <Label
+                    htmlFor="location"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Location
+                  </Label>
+                  <div className="mt-2">
+                    <Input
+                      type="text"
+                      id="location"
+                      placeholder="Location"
+                      onChange={handleLocationMapsChange}
+                    />
+                  </div>
+                </div>
+                <div className="max-sm:hidden">
+                  <Label
+                    htmlFor="image"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Image
+                  </Label>
+                  <div className="mt-2">
+                    <Input type="file" id="image" onChange={handleUpload} />
+                  </div>
+                </div>
               </section>
-              <section className="w-1/2">
+              <section className="w-1/2 max-sm:hidden">
                 <div>
                   <Label
                     htmlFor="facilities"

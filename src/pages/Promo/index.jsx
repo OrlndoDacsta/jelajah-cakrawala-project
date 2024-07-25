@@ -24,9 +24,9 @@ const Promo = () => {
       </div>
 
       <div className="w-10/12 mx-auto mt-5">
-        <div className="flex items-center w-7/12 gap-1">
+        <div className="flex items-center w-7/12 gap-1 max-sm:w-full max-sm:mx-auto">
           <RiDiscountPercentFill className="w-10 h-10 text-primary" />
-          <p className="text-xl font-bold ">
+          <p className="text-xl font-bold max-sm:text-lg">
             Extend your vacation without extending your budget. Check out our
             long-stay discounts.
           </p>

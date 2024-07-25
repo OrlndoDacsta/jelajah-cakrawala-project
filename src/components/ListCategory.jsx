@@ -74,7 +74,7 @@ const ListCategory = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="grid w-10/12 grid-cols-3 gap-10 p-5 mx-auto">
+      <div className="grid w-10/12 grid-cols-3 gap-10 p-5 mx-auto max-sm:grid-cols-1">
         {currentItems.map((item) => (
           <div
             key={item.id}
@@ -82,7 +82,7 @@ const ListCategory = () => {
           >
             <Card>
               <CardHeader>
-                <CardTitle className="text-3xl font-bold text-center">
+                <CardTitle className="text-3xl font-bold text-center max-sm:text-lg">
                   {item.name}
                 </CardTitle>
                 <CardDescription>
@@ -94,11 +94,11 @@ const ListCategory = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p>
+                <p className="max-sm:text-sm">
                   <span className="font-bold">Created: </span>
                   {format(new Date(item.createdAt), "eee, dd MMM yyyy")}
                 </p>
-                <p>
+                <p className="max-sm:text-sm">
                   <span className="font-bold">Updated: </span>
                   {format(new Date(item.updatedAt), "eee, dd MMM yyyy")}
                 </p>

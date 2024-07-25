@@ -12,14 +12,75 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  BadgePercent,
+  Car,
+  Home,
+  LineChart,
+  Menu,
+  Package,
+  Package2,
+  Search,
+  ShoppingCart,
+  Users,
+} from "lucide-react";
 
 const Navbar = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   return (
-    <nav className="fixed z-50 flex items-center justify-between w-full h-16 bg-gray-300 border border-gray-200 backdrop-filter backdrop-blur-md bg-opacity-10">
-      <img className="w-20 pl-3" src={logoHome} alt="logoHome" />
-      <div className="flex gap-10">
+    <nav className="fixed z-50 flex items-center justify-between w-full h-16 bg-gray-300 border border-gray-200 backdrop-filter backdrop-blur-md bg-opacity-10 max-sm:pl-3">
+      <img className="w-20 pl-3 max-md:hidden" src={logoHome} alt="logoHome" />
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline" size="icon" className="bg-transparent shrink-0 md:hidden">
+            <Menu className="w-5 h-5" />
+            <span className="sr-only">Toggle navigation menu</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="left" className="flex flex-col">
+          <nav className="grid gap-2 text-lg font-medium">
+            <Link
+              to={"/"}
+              className="flex items-center gap-2 text-lg font-semibold"
+            >
+              <span className="sr-only">Jelajah Cakrawala</span>
+            </Link>
+            <Link
+              to={"/"}
+              className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+            >
+              <Home className="w-5 h-5" />
+              Home
+            </Link>
+            <Link
+              to={"/activity"}
+              className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+            >
+              <Car className="w-4 h-4" />
+              Activity
+            </Link>
+            <Link
+              to={"/promo"}
+              className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+            >
+              <BadgePercent className="w-5 h-5" />
+              Promo
+            </Link>
+            {isLoggedIn && (
+              <Link
+                to="/dashboard/user"
+                className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+              >
+                <Users className="w-5 h-5" />
+                Dashboard
+              </Link>
+            )}
+          </nav>
+        </SheetContent>
+      </Sheet>
+      <div className="flex gap-10 max-sm:hidden">
         <Link to="/">
           <p className="font-bold duration-200 hover:scale-125">Home</p>
         </Link>
@@ -45,10 +106,10 @@ const Navbar = () => {
                 CN
               </AvatarFallback>
             </Avatar>
-            <DropdownMenuTrigger className="px-3 py-1 mr-5 font-semibold text-black bg-[#B9B7BD] rounded-lg shadow-lg">
+            <DropdownMenuTrigger className="px-3 py-1 mr-5 font-semibold text-black bg-transparent rounded-lg shadow-lg">
               {userInfo.user.name}
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-[#B9B7BD]">
+            <DropdownMenuContent className="bg-transparent">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>

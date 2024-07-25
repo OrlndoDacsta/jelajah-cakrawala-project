@@ -35,7 +35,7 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <div className="w-11/12">
+      <div className="w-11/12 mx-auto">
         <section className="flex items-center justify-center gap-2 p-5 max-sm:flex-col max-sm:gap-4">
           <div className="flex flex-col items-center w-1/2 gap-5 mt-20 max-sm:w-3/4 max-sm:justify-center">
             <h1 className="text-[40px] font-bold max-sm:text-xl max-sm:text-center">

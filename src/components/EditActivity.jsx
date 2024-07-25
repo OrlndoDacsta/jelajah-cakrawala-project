@@ -179,7 +179,7 @@ const EditActivity = () => {
         <Card className="shadow-2xl bg-slate-200">
           <CardContent className="p-5">
             <div className="flex gap-10">
-              <section className="w-1/2">
+              <section className="w-1/2 max-sm:w-full">
                 <div>
                   <Label
                     htmlFor="title"
@@ -344,8 +344,135 @@ const EditActivity = () => {
                     />
                   </div>
                 </div>
+
+                <div className="sm:hidden">
+                  <Label
+                    htmlFor="facilities"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Facilities
+                  </Label>
+                  <div>
+                    <Input
+                      type="text"
+                      id="facilities"
+                      placeholder="Facilities"
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          facilities: e.target.value,
+                        });
+                      }}
+                      defaultValue={valueActivity.facilities}
+                    />
+                  </div>
+                </div>
+                <div className="sm:hidden">
+                  <Label
+                    htmlFor="address"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Address
+                  </Label>
+                  <div className="mt-2">
+                    <Textarea
+                      type="text"
+                      id="address"
+                      placeholder="Address"
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          address: e.target.value,
+                        });
+                      }}
+                      defaultValue={valueActivity.address}
+                    />
+                  </div>
+                </div>
+                <div className="sm:hidden">
+                  <Label
+                    htmlFor="province"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Province
+                  </Label>
+                  <div className="mt-2">
+                    <Input
+                      type="text"
+                      id="province"
+                      placeholder="Province"
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          province: e.target.value,
+                        });
+                      }}
+                      defaultValue={valueActivity.province}
+                    />
+                  </div>
+                </div>
+                <div className="sm:hidden">
+                  <Label
+                    htmlFor="city"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
+                  >
+                    City
+                  </Label>
+                  <div className="mt-2">
+                    <Input
+                      type="text"
+                      id="city"
+                      placeholder="City"
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          city: e.target.value,
+                        });
+                      }}
+                      defaultValue={valueActivity.city}
+                    />
+                  </div>
+                </div>
+                <div className="sm:hidden">
+                  <Label
+                    htmlFor="location"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Location
+                  </Label>
+                  <div className="mt-2">
+                    <Input
+                      type="text"
+                      id="location"
+                      placeholder="Location"
+                      onChange={(e) => {
+                        setValueActivity({
+                          ...valueActivity,
+                          location_maps: e.target.value,
+                        });
+                      }}
+                      defaultValue={valueActivity.location_maps}
+                    />
+                  </div>
+                </div>
+                <div className="sm:hidden">
+                  <Label
+                    htmlFor="image"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Image
+                  </Label>
+                  <div className="mt-2">
+                    <Input
+                      type="file"
+                      id="image"
+                      onChange={handleUpload}
+                      defaultValue={valueActivity.imageUrls}
+                    />
+                  </div>
+                </div>
               </section>
-              <section className="w-1/2">
+              <section className="w-1/2 max-sm:hidden">
                 <div>
                   <Label
                     htmlFor="facilities"

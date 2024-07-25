@@ -110,7 +110,7 @@ const ActivityHome = () => {
         <CarouselContent>
           {activity.map((item) => (
             <CarouselItem key={item.id}>
-              <div>
+              <Link to={"/activity"}>
                 <Card>
                   <CardContent className="flex flex-col items-center justify-center gap-2 mt-5">
                     <img
@@ -138,7 +138,7 @@ const ActivityHome = () => {
                     </div>
                   </CardContent>
                 </Card>
-              </div>
+              </Link>
             </CarouselItem>
           ))}
         </CarouselContent>

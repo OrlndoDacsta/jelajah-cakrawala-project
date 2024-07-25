@@ -55,7 +55,7 @@ const ListPromo = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="grid grid-cols-3 gap-10 p-5">
+      <div className="grid grid-cols-3 gap-10 p-5 max-sm:grid-cols-1">
         {currentItems.map((item) => (
           <Link
             key={item.id}
@@ -64,7 +64,7 @@ const ListPromo = () => {
           >
             <Card>
               <CardHeader>
-                <CardTitle className="text-3xl font-bold text-center">
+                <CardTitle className="text-3xl font-bold text-center max-sm:text-lg">
                   {item.title}
                 </CardTitle>
                 <CardDescription>

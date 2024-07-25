@@ -135,7 +135,7 @@ const EditProfile = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+        <Button variant="outline" className="w-full bg-[#B9B7BD] max-sm:w-fit max-sm:text-sm">Edit Profile</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

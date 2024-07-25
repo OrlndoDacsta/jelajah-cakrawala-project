@@ -21,9 +21,9 @@ const Activity = () => {
       </div>
 
       <div className="w-10/12 mx-auto mt-5">
-        <div className="flex items-center w-7/12 gap-1">
+        <div className="flex items-center w-7/12 gap-1 max-sm:mx-auto max-sm:w-full">
           <MdLocalActivity className="w-10 h-10 text-primary" />
-          <p className="text-xl font-bold ">
+          <p className="text-xl font-bold max-sm:text-lg">
             Adventures for All Ages – Fun Activities for Everyone!
           </p>
         </div>

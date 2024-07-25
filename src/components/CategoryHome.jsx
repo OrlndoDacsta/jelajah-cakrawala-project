@@ -93,7 +93,7 @@ const CategoryHome = () => {
         <CarouselContent>
           {categories.map((item) => (
             <CarouselItem key={item.id}>
-              <div>
+              <Link to={"/category"}>
                 <Card>
                   <CardContent className="flex flex-col items-center justify-center gap-1 mt-5">
                   <img
@@ -106,7 +106,7 @@ const CategoryHome = () => {
                     </CardTitle>
                   </CardContent>
                 </Card>
-              </div>
+              </Link>
             </CarouselItem>
           ))}
         </CarouselContent>

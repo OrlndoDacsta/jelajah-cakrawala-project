@@ -153,7 +153,7 @@ const CreatePromoDashboard = () => {
         <Card>
           <CardContent className="p-5">
             <div className="flex gap-10">
-              <section className="w-1/2">
+              <section className="w-1/2 max-sm:w-full">
                 <div>
                   <Label
                     htmlFor="title"
@@ -218,8 +218,51 @@ const CreatePromoDashboard = () => {
                     />
                   </div>
                 </div>
+                <div className="mt-2 sm:hidden">
+                  <Label
+                    htmlFor="minimumPrice"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Minimum Price
+                  </Label>
+                  <div className="mt-2">
+                    <Input
+                      type="number"
+                      id="minimumPrice"
+                      placeholder="ex. 100000"
+                      onChange={handleMinimumPriceChange}
+                    />
+                  </div>
+                </div>
+                <div className="sm:hidden">
+                  <Label
+                    htmlFor="promoDiscount"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Promo Discount
+                  </Label>
+                  <div className="mt-2">
+                    <Input
+                      type="number"
+                      id="promoDiscount"
+                      placeholder="ex. 1000"
+                      onChange={handlePromoDiscountChange}
+                    />
+                  </div>
+                </div>
+                <div className="sm:hidden">
+                  <Label
+                    htmlFor="image"
+                    className="block mt-2 text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Image
+                  </Label>
+                  <div className="mt-2">
+                    <Input type="file" id="image" onChange={handleUpload} />
+                  </div>
+                </div>
               </section>
-              <section className="w-1/2">
+              <section className="w-1/2 max-sm:hidden">
                 <div>
                   <Label
                     htmlFor="minimumPrice"
