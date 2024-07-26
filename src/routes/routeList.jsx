@@ -21,6 +21,7 @@ import UpdatePromo from "@/pages/dashboard/PromoDashboard/UpdatePromo";
 import ActivityDashboard from "@/pages/dashboard/ActivityDashboard";
 import CreateActivity from "@/pages/dashboard/ActivityDashboard/CreateActivity";
 import UpdateActivity from "@/pages/dashboard/ActivityDashboard/UpdateActivity";
+import ProtectedRoute from "./ProtectedRoute";
 
 const routeList = [
   {
@@ -53,27 +54,51 @@ const routeList = [
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <ProtectedRoute>
+        <Dashboard />{" "}
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/dashboard/user",
-    element: <ListUser />,
+    element: (
+      <ProtectedRoute>
+        <ListUser />,
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/dashboard/banner",
-    element: <BannerDashboard />,
+    element: (
+      <ProtectedRoute>
+        <BannerDashboard />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/dashboard/banner/edit-banner/:id",
-    element: <EditBannerDashboard />,
+    element: (
+      <ProtectedRoute>
+        <EditBannerDashboard />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/dashboard/category",
-    element: <CategryDashboard />,
+    element: (
+      <ProtectedRoute>
+        <CategryDashboard />,
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/dashboard/category/edit-category/:id",
-    element: <UpdateCategory />,
+    element: (
+      <ProtectedRoute>
+        <UpdateCategory />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/dashboard/promo",

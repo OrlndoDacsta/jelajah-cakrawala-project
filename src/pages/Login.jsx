@@ -3,7 +3,6 @@ import imgLogin from "../assets/img/imgLogin.png";
 import FormLogin from "../components/FormLogin";
 import logoSm from "../assets/img/logoHome.png";
 
-
 const Login = () => {
   
   return (

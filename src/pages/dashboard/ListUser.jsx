@@ -45,6 +45,7 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
 } from "@/components/ui/alert-dialog";
+import { useSelector } from "react-redux";
 
 const ListUser = () => {
   const [users, setUsers] = useState([]);
@@ -55,6 +56,8 @@ const ListUser = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
+  const [search, setSearch] = useState("");
+  const userInfo = useSelector((state) => state.user.userInfo);
 
   const endOffset = itemOffset + itemsPerPage;
   // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
@@ -76,7 +79,7 @@ const ListUser = () => {
         {
           headers: {
             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k`,
+            Authorization: `Bearer ${userInfo.token ?? ""}`,
           },
         }
       )
@@ -111,7 +114,7 @@ const ListUser = () => {
         {
           headers: {
             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k`,
+            Authorization: `Bearer ${userInfo.token ?? ""}`,
           },
         }
       )
@@ -124,7 +127,7 @@ const ListUser = () => {
                 : user
             )
           );
-          toast({ description: res.data.message, variant: "destructive" });
+          toast({ description: res.data.message, variant: "success" });
         }
       })
       .catch((err) => {
@@ -153,8 +156,9 @@ const ListUser = () => {
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   type="search"
-                  placeholder="Search products..."
+                  placeholder="Search user"
                   className="w-full pl-8 shadow-none appearance-none bg-background md:w-2/3 lg:w-1/3"
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
             </form>
@@ -182,76 +186,86 @@ const ListUser = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {currentItems.map((item) => (
-                  <TableRow key={item.id}>
-                    <TableCell className="font-medium">
-                      <img
-                        src={item.profilePictureUrl}
-                        alt="profilePicture"
-                        className="rounded-lg w-[100px] h-[100px] object-cover"
-                      />
-                    </TableCell>
-                    <TableCell>{item.email}</TableCell>
-                    <TableCell>{item.phoneNumber}</TableCell>
-                    <TableCell>
-                      <Badge
-                        className={`${
-                          item.role === "admin" ? "bg-blue-500" : "bg-red-500"
-                        }`}
-                      >
-                        {item.role}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button
-                            variant="outline"
-                            onClick={() => openDialog(item.id, item.role)}
-                            className="bg-[#B9B7BD]"
-                          >
-                            Change
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className="sm:max-w-[425px]">
-                          <DialogHeader>
-                            <DialogTitle>Change Role</DialogTitle>
-                            <DialogDescription>
-                              Make changes role. Click save when you're done.
-                            </DialogDescription>
-                          </DialogHeader>
-                          <div className="grid gap-4 py-4">
-                            <div className="grid items-center grid-cols-4 gap-4">
-                              <Label htmlFor="role" className="text-right">
-                                Role
-                              </Label>
-                              <Select
-                                id="role"
-                                value={selectedRole}
-                                onValueChange={handleRoleChange}
-                              >
-                                <SelectTrigger className="w-[180px]">
-                                  <SelectValue placeholder="Select Role" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectGroup>
-                                    <SelectItem value="user">User</SelectItem>
-                                    <SelectItem value="admin">Admin</SelectItem>
-                                  </SelectGroup>
-                                </SelectContent>
-                              </Select>
-                            </div>
-                          </div>
-                          <DialogClose className="text-right">
-                            <Button onClick={updateRole}>
-                              {isLoading ? "Loading..." : "Save"}
+                {currentItems
+                  .filter((item) => {
+                    return search.toLocaleLowerCase() === ""
+                      ? item
+                      : item.email
+                          .toLocaleLowerCase()
+                          .includes(search.toLocaleLowerCase());
+                  })
+                  .map((item) => (
+                    <TableRow key={item.id}>
+                      <TableCell className="font-medium">
+                        <img
+                          src={item.profilePictureUrl}
+                          alt="profilePicture"
+                          className="rounded-lg w-[100px] h-[100px] object-cover"
+                        />
+                      </TableCell>
+                      <TableCell>{item.email}</TableCell>
+                      <TableCell>{item.phoneNumber}</TableCell>
+                      <TableCell>
+                        <Badge
+                          className={`${
+                            item.role === "admin" ? "bg-blue-500" : "bg-red-500"
+                          }`}
+                        >
+                          {item.role}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button
+                              variant="outline"
+                              onClick={() => openDialog(item.id, item.role)}
+                              className="bg-[#B9B7BD]"
+                            >
+                              Change
                             </Button>
-                          </DialogClose>
-                        </DialogContent>
-                      </Dialog>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                          </DialogTrigger>
+                          <DialogContent className="sm:max-w-[425px]">
+                            <DialogHeader>
+                              <DialogTitle>Change Role</DialogTitle>
+                              <DialogDescription>
+                                Make changes role. Click save when you're done.
+                              </DialogDescription>
+                            </DialogHeader>
+                            <div className="grid gap-4 py-4">
+                              <div className="grid items-center grid-cols-4 gap-4">
+                                <Label htmlFor="role" className="text-right">
+                                  Role
+                                </Label>
+                                <Select
+                                  id="role"
+                                  value={selectedRole}
+                                  onValueChange={handleRoleChange}
+                                >
+                                  <SelectTrigger className="w-[180px]">
+                                    <SelectValue placeholder="Select Role" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectGroup>
+                                      <SelectItem value="user">User</SelectItem>
+                                      <SelectItem value="admin">
+                                        Admin
+                                      </SelectItem>
+                                    </SelectGroup>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            </div>
+                            <DialogClose className="text-right">
+                              <Button onClick={updateRole}>
+                                {isLoading ? "Loading..." : "Save"}
+                              </Button>
+                            </DialogClose>
+                          </DialogContent>
+                        </Dialog>
+                      </TableCell>
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
             <ReactPaginate
