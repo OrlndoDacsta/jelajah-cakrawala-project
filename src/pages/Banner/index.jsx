@@ -9,9 +9,9 @@ const Banner = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex items-center justify-center gap-3 p-2">
-        <MdOutlinePictureInPicture className="w-12 h-12" />
-        <h1 className="text-3xl font-bold">List Banner</h1>
+      <div className="flex items-center justify-center gap-3 p-2 pt-20">
+        <MdOutlinePictureInPicture className="w-12 h-12 max-sm:w-6 max-sm:h-6" />
+        <h1 className="text-3xl font-bold max-sm:text-lg">List Banner</h1>
       </div>
       <ListBanner />
       <Footer />

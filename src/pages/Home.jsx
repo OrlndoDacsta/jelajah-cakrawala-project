@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ButtonLogout from "../components/ButtonLogout";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
@@ -48,7 +48,9 @@ const Home = () => {
               offering a comprehensive platform that caters to all your travel
               needs.
             </p>
-            <Button className="w-24 bg-blue-700">Make Plan</Button>
+            <Link to="/activity">
+              <Button className="w-24 bg-blue-700">Make Plan</Button>
+            </Link>
           </div>
           <BannerHome />
         </section>
@@ -59,7 +61,9 @@ const Home = () => {
             <Card className="w-1/3 border-none max-sm:w-3/4">
               <CardContent className="flex flex-col items-center justify-center gap-2">
                 <img src={findPlace} alt="findPlace" />
-                <CardTitle className="text-2xl font-bold max-sm:text-lg max-sm:font-semibold">Find Place</CardTitle>
+                <CardTitle className="text-2xl font-bold max-sm:text-lg max-sm:font-semibold">
+                  Find Place
+                </CardTitle>
                 <CardDescription className="max-sm:text-xs max-sm:text-center">
                   Find the best place to visit in your destination and holiday.
                 </CardDescription>

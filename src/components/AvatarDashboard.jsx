@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { useSelector } from "react-redux";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ButtonLogout from "./ButtonLogout";
+import { Link } from "react-router-dom";
 
 const AvatarDashboard = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -29,10 +30,16 @@ const AvatarDashboard = () => {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>{isLogin ? userInfo.user.name : "Guest"}</DropdownMenuItem>
-        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem>
+          {isLogin ? userInfo.user.name : "Guest"}
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link to="/profile">Profile</Link>
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem><ButtonLogout /></DropdownMenuItem>
+        <DropdownMenuItem>
+          <ButtonLogout />
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

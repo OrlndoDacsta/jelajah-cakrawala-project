@@ -102,31 +102,59 @@ const routeList = [
   },
   {
     path: "/dashboard/promo",
-    element: <PromoDashboard />,
+    element: (
+      <ProtectedRoute>
+        <PromoDashboard />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/dashboard/promo/create-promo",
-    element: <CreatePromo />,
+    element: (
+      <ProtectedRoute>
+        <CreatePromo />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/dashboard/promo/edit-promo/:id",
-    element: <UpdatePromo />,
+    element: (
+      <ProtectedRoute>
+        <UpdatePromo />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/dashboard/activity",
-    element: <ActivityDashboard />,
+    element: (
+      <ProtectedRoute>
+        <ActivityDashboard />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/dashboard/activity/create-activity",
-    element: <CreateActivity />,
+    element: (
+      <ProtectedRoute>
+        <CreateActivity />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/dashboard/activity/edit-activity/:id",
-    element: <UpdateActivity />,
+    element: (
+      <ProtectedRoute>
+        <UpdateActivity />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/profile",
-    element: <Profile />,
+    element: (
+      <ProtectedRoute>
+        <Profile />,
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/promo/:id",

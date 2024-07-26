@@ -171,14 +171,14 @@ const FormRegister = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-5 max-sm:w-full">
-      <div className="container w-[560px] border rounded-3xl shadow-2xl p-4">
+    <div className="flex flex-col items-center justify-center gap-5">
+      <div className="container w-[560px] border rounded-3xl shadow-2xl p-4 max-sm:w-full">
         <h1 className="mb-5 text-3xl font-bold text-black max-sm:text-2xl max-sm:mb-0 max-sm:text-center max-sm:p-2">
           Create Your Account
         </h1>
-        <section className="flex gap-5">
+        <section className="flex gap-5 max-sm:flex-col max-sm:gap-0">
           <div className="mb-2">
-            <label htmlFor="email" className="text-gray-500">
+            <label htmlFor="email" className="text-gray-500 max-sm:hidden">
               Email
             </label>
             <div className="flex items-center justify-center mb-5">
@@ -192,7 +192,7 @@ const FormRegister = () => {
           </div>
 
           <div className="mb-2">
-            <label htmlFor="email" className="text-gray-500">
+            <label htmlFor="email" className="text-gray-500 max-sm:hidden">
               Username
             </label>
             <div className="flex items-center justify-center mb-5">
@@ -206,9 +206,9 @@ const FormRegister = () => {
           </div>
         </section>
 
-        <section className="flex gap-5">
+        <section className="flex gap-5 max-sm:flex-col max-sm:gap-0">
           <div className="mb-2">
-            <label htmlFor="password" className="text-gray-500">
+            <label htmlFor="password" className="text-gray-500 max-sm:hidden">
               Password
             </label>
             <div className="flex items-center justify-center mb-5">
@@ -220,16 +220,24 @@ const FormRegister = () => {
                 type={showpassword ? "text" : "password"}
               />
               <p
-                className="absolute text-gray-500 cursor-pointer right-96"
+                className="absolute text-gray-500 cursor-pointer right-96 max-sm:hidden"
                 onClick={handleShowPassword}
               >
                 {showpassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
               </p>
             </div>
+            <div className="flex items-center gap-1 mt-2 mb-5 sm:hidden">
+              <input
+                type="checkbox"
+                className="w-5"
+                onClick={handleShowPassword}
+              />
+              <label className="text-xs text-gray-500">Show Password</label>
+            </div>
           </div>
 
           <div className="mb-2">
-            <label htmlFor="password" className="text-gray-500 ">
+            <label htmlFor="password" className="text-gray-500 max-sm:hidden">
               Confirm Password
             </label>
 
@@ -238,11 +246,11 @@ const FormRegister = () => {
               <input
                 className="p-3 text-black transition-colors duration-300 ease-out delay-300 bg-transparent border-b w-60 focus:outline-none focus:border-blue-500 max-sm:w-60"
                 onChange={handlePasswordRepeatChange}
-                placeholder="Password"
+                placeholder="Confirm Password"
                 type={showpasswordRepeat ? "text" : "password"}
               />
               <p
-                className="absolute text-gray-500 cursor-pointer right-[102px]"
+                className="absolute text-gray-500 cursor-pointer right-[102px] max-sm:hidden"
                 onClick={handleShowPasswordRepeat}
               >
                 {showpasswordRepeat ? (
@@ -252,12 +260,20 @@ const FormRegister = () => {
                 )}
               </p>
             </div>
+            <div className="flex items-center gap-1 mt-2 mb-5 sm:hidden">
+              <input
+                type="checkbox"
+                className="w-5"
+                onClick={handleShowPasswordRepeat}
+              />
+              <label className="text-xs text-gray-500">Show Password</label>
+            </div>
           </div>
         </section>
 
-        <section className="flex gap-5">
+        <section className="flex gap-5 max-sm:flex-col max-sm:gap-0">
           <div className="mb-2">
-            <label htmlFor="password" className="text-gray-500 ">
+            <label htmlFor="password" className="text-gray-500 max-sm:hidden">
               Select Role
             </label>
             <div className="flex items-center justify-center mb-5">
@@ -275,7 +291,7 @@ const FormRegister = () => {
           </div>
 
           <div className="mb-2">
-            <label htmlFor="password" className="text-gray-500 ">
+            <label htmlFor="password" className="text-gray-500 max-sm:hidden">
               Phone Number
             </label>
             <div className="flex items-center justify-center mb-5">
@@ -290,12 +306,12 @@ const FormRegister = () => {
         </section>
 
         <div className="mb-2">
-          <label htmlFor="password" className="text-gray-500 ">
+          <label htmlFor="password" className="text-gray-500 max-sm:hidden">
             Profile Picture
           </label>
         </div>
 
-        <div className="flex gap-3 mb-5">
+        <div className="flex gap-3 mb-5 max-sm:flex-col max-sm:gap-5">
           <input
             className="text-black transition-colors duration-300 ease-out delay-300 bg-transparent border-b w-96 focus:outline-none focus:border-blue-500 max-sm:w-60 "
             onChange={handleFileChange}
@@ -303,7 +319,7 @@ const FormRegister = () => {
             type="file"
           />
           <button
-            className="w-32 py-2 text-xl font-bold text-white duration-300 ease-out transform bg-blue-500 rounded-xl hover:rounded-sm hover:bg-blue-800 hover:shadow-2xl hover:-translate-y-1"
+            className="w-32 py-2 text-xl font-bold text-white duration-300 ease-out transform bg-blue-500 rounded-xl hover:rounded-sm hover:bg-blue-800 hover:shadow-2xl hover:-translate-y-1 max-sm:text-lg max-sm:w-1/3 max-sm:self-center"
             onClick={handleUpload}
           >
             Upload
@@ -316,10 +332,16 @@ const FormRegister = () => {
         >
           Create Account
         </button>
-        <p className="text-center text-gray-500 max-sm:p-2">
+        <p className="mt-2 text-center text-gray-500 max-sm:p-2">
           Already have an account?{" "}
           <Link to="/login" className="text-gray-500 hover:text-blue-500">
             Login
+          </Link>
+        </p>
+        <p className="text-center text-gray-500 max-sm:p-2">
+          Or go{" "}
+          <Link to="/" className="text-gray-500 hover:text-blue-500">
+            Home
           </Link>
         </p>
       </div>

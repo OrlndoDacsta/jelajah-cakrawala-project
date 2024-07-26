@@ -33,6 +33,7 @@ import {
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const CreatePromoDashboard = () => {
   const [title, setTitle] = useState("");
@@ -44,6 +45,8 @@ const CreatePromoDashboard = () => {
   const [imageUrl, setImageUrl] = useState(null);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const userInfo = useSelector((state) => state.user.userInfo);
+  
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -65,7 +68,7 @@ const CreatePromoDashboard = () => {
     const config = {
       headers: {
         "content-type": "multipart/form-data",
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k`,
+        Authorization: `Bearer ${userInfo.token ?? ""}`,
         apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
       },
     };
@@ -123,7 +126,7 @@ const CreatePromoDashboard = () => {
       headers: {
         apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k",
+          `Bearer ${userInfo.token ?? ""}`,
       },
     };
 

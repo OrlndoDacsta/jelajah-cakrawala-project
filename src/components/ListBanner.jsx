@@ -61,15 +61,15 @@ const ListBanner = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="grid w-10/12 grid-cols-3 gap-5 p-5 mx-auto">
+      <div className="grid w-10/12 grid-cols-3 gap-5 p-5 mx-auto max-sm:grid-cols-1">
         {currentItems.map((item) => (
           <div
             key={item.id}
-            className="w-[350px] border shadow-2xl rounded-3xl"
+            className="w-[350px] border shadow-2xl rounded-3xl max-sm:w-[300px]"
           >
             <Card>
               <CardHeader>
-                <CardTitle className="text-3xl font-bold text-center">
+                <CardTitle className="text-3xl font-bold text-center max-sm:text-lg">
                   {item.name}
                 </CardTitle>
                 <CardDescription>
@@ -80,7 +80,7 @@ const ListBanner = () => {
                   />
                 </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="max-sm:text-sm">
                 <p>
                   <span className="font-bold">Created: </span>
                   {format(new Date(item.createdAt), "eee, dd MMM yyyy")}

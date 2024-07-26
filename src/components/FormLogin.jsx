@@ -9,6 +9,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/slice/userSlice";
+import { Home } from "lucide-react";
 
 const FormLogin = () => {
   const dispatch = useDispatch();
@@ -97,9 +98,15 @@ const FormLogin = () => {
       <p className="text-sm text-gray-500 max-sm:text-xs max-sm:text-center">
         Welcome to Jelajah Cakrawala
       </p>
-      <h1 className="text-3xl font-bold max-sm:text-center max-sm:text-xl">
-        Login with
-      </h1>
+      <div className="flex justify-between">
+        <h1 className="text-3xl font-bold max-sm:text-center max-sm:text-xl">
+          Login with
+        </h1>
+        <Link to="/" className="flex items-center duration-200 hover:scale-110">
+          <Home className="w-8 h-8 max-sm:w-6 max-sm:h-6" />
+          <p className="text-sm max-sm:text-xs">Home</p>
+        </Link>
+      </div>
       <div>
         <div className="mb-2 max-sm:mb-0">
           <label htmlFor="email" className="text-gray-500 max-sm:text-xs">

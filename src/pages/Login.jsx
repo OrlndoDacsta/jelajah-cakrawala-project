@@ -3,8 +3,8 @@ import imgLogin from "../assets/img/imgLogin.png";
 import FormLogin from "../components/FormLogin";
 import logoSm from "../assets/img/logoHome.png";
 
+
 const Login = () => {
-  
   return (
     <div className="content-center p-4 sm:h-screen max-sm:w-3/4 max-sm:mx-auto">
       <div className="flex items-center justify-center gap-10 max-sm:flex-col max-sm:gap-2">

@@ -14,6 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const BannerHome = () => {
   const [banners, setBanners] = useState([]);
@@ -53,18 +54,20 @@ const BannerHome = () => {
       <CarouselContent>
         {banners.map((banner) => (
           <CarouselItem key={banner.id}>
-            <Card className="flex flex-col items-center w-full pt-5 bg-gray-300 border backdrop-filter backdrop-blur-md bg-opacity-10">
-              <CardContent>
-                <img
-                  className="w-[500px] h-[300px] object-cover rounded-xl max-sm:w-[300px] max-sm:h-[200px]"
-                  src={banner.imageUrl}
-                  alt={banner.title}
-                />
-              </CardContent>
-              <CardFooter>
-                <h2 className="text-2xl max-sm:text-xl">{banner.name}</h2>
-              </CardFooter>
-            </Card>
+            <Link to="/banner">
+              <Card className="flex flex-col items-center w-full pt-5 bg-gray-300 border backdrop-filter backdrop-blur-md bg-opacity-10">
+                <CardContent>
+                  <img
+                    className="w-[500px] h-[300px] object-cover rounded-xl max-sm:w-[300px] max-sm:h-[200px]"
+                    src={banner.imageUrl}
+                    alt={banner.title}
+                  />
+                </CardContent>
+                <CardFooter>
+                  <h2 className="text-2xl max-sm:text-xl">{banner.name}</h2>
+                </CardFooter>
+              </Card>
+            </Link>
           </CarouselItem>
         ))}
       </CarouselContent>

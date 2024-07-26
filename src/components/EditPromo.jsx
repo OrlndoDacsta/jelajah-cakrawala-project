@@ -33,6 +33,7 @@ import {
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const EditPromo = () => {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ const EditPromo = () => {
     imageUrl: null,
   });
   const { toast } = useToast();
+  const userInfo = useSelector((state) => state.user.userInfo);
 
   const getEditPromo = () => {
     const config = {
@@ -101,7 +103,7 @@ const EditPromo = () => {
     const config = {
       headers: {
         "content-type": "multipart/form-data",
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k`,
+        Authorization: `Bearer ${userInfo.token ?? ""}`,
         apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
       },
     };
@@ -127,7 +129,7 @@ const EditPromo = () => {
     const config = {
       headers: {
         apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k`,
+        Authorization: `Bearer ${userInfo.token ?? ""}`,
       },
     };
     axios
@@ -300,7 +302,7 @@ const EditPromo = () => {
                       type="file"
                       id="image"
                       onChange={handleUpload}
-                      defaultValue={valuePromo.image}
+                      defaultValue={valuePromo.imageUrl}
                     />
                   </div>
                 </div>
