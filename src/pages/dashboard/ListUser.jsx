@@ -54,15 +54,18 @@ const ListUser = () => {
   const [selectedRole, setSelectedRole] = useState("");
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [open, setOpen] = useState(false);
   const { toast } = useToast();
   const [search, setSearch] = useState("");
   const userInfo = useSelector((state) => state.user.userInfo);
 
+  const filteredUsers = users.filter((item) =>
+    item.email.toLowerCase().includes(search.toLowerCase())
+  );
+
   const endOffset = itemOffset + itemsPerPage;
   // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentItems = users.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(users.length / itemsPerPage);
+  const currentItems = filteredUsers.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(filteredUsers.length / itemsPerPage);
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % users.length;
@@ -186,86 +189,76 @@ const ListUser = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {currentItems
-                  .filter((item) => {
-                    return search.toLocaleLowerCase() === ""
-                      ? item
-                      : item.email
-                          .toLocaleLowerCase()
-                          .includes(search.toLocaleLowerCase());
-                  })
-                  .map((item) => (
-                    <TableRow key={item.id}>
-                      <TableCell className="font-medium">
-                        <img
-                          src={item.profilePictureUrl}
-                          alt="profilePicture"
-                          className="rounded-lg w-[100px] h-[100px] object-cover"
-                        />
-                      </TableCell>
-                      <TableCell>{item.email}</TableCell>
-                      <TableCell>{item.phoneNumber}</TableCell>
-                      <TableCell>
-                        <Badge
-                          className={`${
-                            item.role === "admin" ? "bg-blue-500" : "bg-red-500"
-                          }`}
-                        >
-                          {item.role}
-                        </Badge>
-                      </TableCell>
-                      <TableCell>
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button
-                              variant="outline"
-                              onClick={() => openDialog(item.id, item.role)}
-                              className="bg-[#B9B7BD]"
-                            >
-                              Change
-                            </Button>
-                          </DialogTrigger>
-                          <DialogContent className="sm:max-w-[425px]">
-                            <DialogHeader>
-                              <DialogTitle>Change Role</DialogTitle>
-                              <DialogDescription>
-                                Make changes role. Click save when you're done.
-                              </DialogDescription>
-                            </DialogHeader>
-                            <div className="grid gap-4 py-4">
-                              <div className="grid items-center grid-cols-4 gap-4">
-                                <Label htmlFor="role" className="text-right">
-                                  Role
-                                </Label>
-                                <Select
-                                  id="role"
-                                  value={selectedRole}
-                                  onValueChange={handleRoleChange}
-                                >
-                                  <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select Role" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectItem value="user">User</SelectItem>
-                                      <SelectItem value="admin">
-                                        Admin
-                                      </SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                              </div>
+                {currentItems.map((item) => (
+                  <TableRow key={item.id}>
+                    <TableCell className="font-medium">
+                      <img
+                        src={item.profilePictureUrl}
+                        alt="profilePicture"
+                        className="rounded-lg w-[100px] h-[100px] object-cover"
+                      />
+                    </TableCell>
+                    <TableCell>{item.email}</TableCell>
+                    <TableCell>{item.phoneNumber}</TableCell>
+                    <TableCell>
+                      <Badge
+                        className={`${
+                          item.role === "admin" ? "bg-blue-500" : "bg-red-500"
+                        }`}
+                      >
+                        {item.role}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button
+                            variant="outline"
+                            onClick={() => openDialog(item.id, item.role)}
+                            className="bg-[#B9B7BD]"
+                          >
+                            Change
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-[425px]">
+                          <DialogHeader>
+                            <DialogTitle>Change Role</DialogTitle>
+                            <DialogDescription>
+                              Make changes role. Click save when you're done.
+                            </DialogDescription>
+                          </DialogHeader>
+                          <div className="grid gap-4 py-4">
+                            <div className="grid items-center grid-cols-4 gap-4">
+                              <Label htmlFor="role" className="text-right">
+                                Role
+                              </Label>
+                              <Select
+                                id="role"
+                                value={selectedRole}
+                                onValueChange={handleRoleChange}
+                              >
+                                <SelectTrigger className="w-[180px]">
+                                  <SelectValue placeholder="Select Role" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectGroup>
+                                    <SelectItem value="user">User</SelectItem>
+                                    <SelectItem value="admin">Admin</SelectItem>
+                                  </SelectGroup>
+                                </SelectContent>
+                              </Select>
                             </div>
-                            <DialogClose className="text-right">
-                              <Button onClick={updateRole}>
-                                {isLoading ? "Loading..." : "Save"}
-                              </Button>
-                            </DialogClose>
-                          </DialogContent>
-                        </Dialog>
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                          </div>
+                          <DialogClose className="text-right">
+                            <Button onClick={updateRole}>
+                              {isLoading ? "Loading..." : "Save"}
+                            </Button>
+                          </DialogClose>
+                        </DialogContent>
+                      </Dialog>
+                    </TableCell>
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
             <ReactPaginate
