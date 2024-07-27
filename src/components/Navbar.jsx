@@ -68,7 +68,7 @@ const Navbar = () => {
               <BadgePercent className="w-5 h-5" />
               Promo
             </Link>
-            {isLoggedIn && (
+            {isLoggedIn && userInfo.user.role === "admin" && (
               <Link
                 to="/dashboard/user"
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
@@ -90,7 +90,7 @@ const Navbar = () => {
         <Link to="/promo">
           <p className="font-bold duration-200 hover:scale-125">Promo</p>
         </Link>
-        {isLoggedIn && (
+        {isLoggedIn && userInfo.user.role === "admin" && (
           <Link to="/dashboard/user">
             <p className="font-bold duration-200 hover:scale-125">Dashboard</p>
           </Link>

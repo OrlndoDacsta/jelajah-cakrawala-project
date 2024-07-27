@@ -150,11 +150,7 @@ const routeList = [
   },
   {
     path: "/profile",
-    element: (
-      <ProtectedRoute>
-        <Profile />,
-      </ProtectedRoute>
-    ),
+    element: <Profile />,
   },
   {
     path: "/promo/:id",
