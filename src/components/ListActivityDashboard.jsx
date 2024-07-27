@@ -25,6 +25,17 @@ import {
 import { Button } from "@/components/ui/button";
 import ReactPaginate from "react-paginate";
 import { useSelector } from "react-redux";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { AlertCircle } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const ListActivityDashboard = () => {
   const [activity, setActivity] = useState([]);
@@ -33,6 +44,7 @@ const ListActivityDashboard = () => {
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 6;
   const userInfo = useSelector((state) => state.user.userInfo);
+  const [categories, setCategories] = useState([]);
 
   const endOffset = itemOffset + itemsPerPage;
   // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
@@ -58,7 +70,7 @@ const ListActivityDashboard = () => {
         }
       )
       .then((res) => {
-        // console.log(res);
+        // console.log(res.data.data);
         setActivity(res.data.data);
       })
       .catch((err) => {
@@ -102,12 +114,82 @@ const ListActivityDashboard = () => {
       .finally(() => setIsLoading(false));
   };
 
+  const getCategories = () => {
+    axios
+      .get(
+        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/categories",
+        {
+          headers: {
+            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res.data.data);
+        setCategories(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
+  const handleFilter = (value) => {
+    if (value === "all") {
+      getActivity();
+      return;
+    }
+    axios
+      .get(
+        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/activities-by-category/${value}`,
+        {
+          headers: {
+            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res.data);
+        setActivity(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
   useEffect(() => {
     getActivity();
+    getCategories();
   }, []);
 
   return (
     <div className="flex flex-col">
+      {/* filter */}
+      <div className="flex justify-center mt-2">
+        <Select onValueChange={handleFilter}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Select Category" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Category</SelectLabel>
+              <SelectItem value="all">All Category</SelectItem>
+              {categories.map((category) => (
+                <SelectItem key={category.id} value={category.id}>
+                  {category.name}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+      {/* No data  */}
+      {activity.length === 0 && (
+        <Alert variant="destructive" className="mt-5 ">
+          <AlertCircle className="w-4 h-4" />
+          <AlertTitle>No Data</AlertTitle>
+          <AlertDescription>No Activities Found</AlertDescription>
+        </Alert>
+      )}
       <div className="grid grid-cols-3 gap-10 p-5 max-sm:grid-cols-1">
         {currentItems.map((item) => (
           <div
@@ -140,10 +222,10 @@ const ListActivityDashboard = () => {
               <CardFooter className="flex justify-between">
                 {/* Edit */}
                 <Link to={`/dashboard/activity/edit-activity/${item.id}`}>
-                      <Button variant="outline" className="text-white bg-primary">
-                        Update
-                      </Button>
-                    </Link>
+                  <Button variant="outline" className="text-white bg-primary">
+                    Update
+                  </Button>
+                </Link>
                 {/* Delete */}
                 <AlertDialog>
                   <AlertDialogTrigger asChild>

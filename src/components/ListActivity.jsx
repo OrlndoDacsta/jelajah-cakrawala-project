@@ -11,11 +11,23 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import ReactPaginate from "react-paginate";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { AlertCircle } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const ListActivity = () => {
   const [activity, setActivity] = useState([]);
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 6;
+  const [categories, setCategories] = useState([]);
 
   const endOffset = itemOffset + itemsPerPage;
   // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
@@ -49,12 +61,84 @@ const ListActivity = () => {
       });
   };
 
+  const getCategories = () => {
+    axios
+      .get(
+        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/categories",
+        {
+          headers: {
+            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res.data.data);
+        setCategories(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
+  const handleFilter = (value) => {
+    if (value === "all") {
+      getActivity();
+      return;
+    }
+    axios
+      .get(
+        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/activities-by-category/${value}`,
+        {
+          headers: {
+            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res.data);
+        setActivity(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
   useEffect(() => {
     getActivity();
+    getCategories();
   }, []);
 
   return (
     <div>
+      {/* filter */}
+      <div className="flex justify-center mt-2">
+        <Select onValueChange={handleFilter}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Select Category" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Category</SelectLabel>
+              <SelectItem value="all">All Category</SelectItem>
+              {categories.map((category) => (
+                <SelectItem key={category.id} value={category.id}>
+                  {category.name}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+      {/* No data  */}
+      {activity.length === 0 && (
+        <Alert variant="destructive" className="mt-5">
+          <AlertCircle className="w-4 h-4" />
+          <AlertTitle>No Data</AlertTitle>
+          <AlertDescription>
+            No Activities Found
+          </AlertDescription>
+        </Alert>
+      )}
       <div className="grid grid-cols-3 gap-5 p-5 max-sm:grid-cols-1">
         {currentItems.map((item) => (
           <Link
