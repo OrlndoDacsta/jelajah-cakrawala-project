@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 
 const ProtectedRoute = ({ children }) => {
   const userInfo = useSelector((state) => state.user.userInfo);
+//   console.log(userInfo);
   if (!userInfo) {
     return <Navigate to="/login" />;
-  } else if (userInfo.role !== "admin") {
+  } else if(userInfo.user.role !== "admin"){
     return <Navigate to="/" />;
   }
 

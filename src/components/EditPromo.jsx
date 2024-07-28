@@ -290,7 +290,7 @@ const EditPromo = () => {
                     />
                   </div>
                 </div>
-                <div>
+                <div className="flex flex-col gap-2">
                   <Label
                     htmlFor="image"
                     className="block mt-2 text-sm font-medium leading-6 text-gray-900"
@@ -305,6 +305,11 @@ const EditPromo = () => {
                       defaultValue={valuePromo.imageUrl}
                     />
                   </div>
+                  <img
+                    src={valuePromo.imageUrl}
+                    alt="imgUpdate"
+                    className="object-cover rounded-lg aspect-video"
+                  />
                 </div>
               </section>
             </div>
