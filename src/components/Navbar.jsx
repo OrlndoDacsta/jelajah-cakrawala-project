@@ -106,10 +106,10 @@ const Navbar = () => {
                 CN
               </AvatarFallback>
             </Avatar>
-            <DropdownMenuTrigger className="px-3 py-1 mr-5 font-semibold text-black bg-transparent rounded-lg shadow-lg">
+            <DropdownMenuTrigger className="px-3 py-1 mr-5 font-semibold text-black rounded-lg shadow-lg">
               {userInfo.user.name}
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-transparent">
+            <DropdownMenuContent>
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
