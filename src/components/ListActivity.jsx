@@ -109,9 +109,9 @@ const ListActivity = () => {
   }, []);
 
   return (
-    <div>
+    <div className="max-sm:w-10/12 max-sm:mx-auto">
       {/* filter */}
-      <div className="flex justify-center mt-2">
+      <div className="flex justify-center w-10/12 mx-auto mt-2">
         <Select onValueChange={handleFilter}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select Category" />

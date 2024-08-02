@@ -13,8 +13,8 @@ const Activity = () => {
         style={{ backgroundImage: `url(${activityImg})` }}
       >
         <div className="p-2 text-center bg-gray-300 rounded-lg backdrop-filter backdrop-blur-md bg-opacity-10">
-          <h1 className="text-3xl font-bold text-primary">Discover History</h1>
-          <h1 className="text-3xl font-bold text-primary">
+          <h1 className="text-3xl font-bold text-primary max-sm:text-lg">Discover History</h1>
+          <h1 className="text-3xl font-bold text-primary max-sm:text-lg">
             Tours and Activities for History Buffs!
           </h1>
         </div>
@@ -22,8 +22,8 @@ const Activity = () => {
 
       <div className="w-10/12 mx-auto mt-5">
         <div className="flex items-center w-7/12 gap-1 max-sm:mx-auto max-sm:w-full">
-          <MdLocalActivity className="w-10 h-10 text-primary" />
-          <p className="text-xl font-bold max-sm:text-lg">
+          <MdLocalActivity className="w-10 h-10 text-primary max-sm:w-5" />
+          <p className="text-xl font-bold max-sm:text-sm">
             Adventures for All Ages – Fun Activities for Everyone!
           </p>
         </div>

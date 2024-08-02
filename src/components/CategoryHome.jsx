@@ -45,10 +45,10 @@ const CategoryHome = () => {
 
   return (
     <section className="flex flex-col items-center justify-center w-3/4 p-5 mx-auto mt-10 bg-gray-300 border backdrop-filter backdrop-blur-md bg-opacity-10">
-      <h1 className="text-3xl font-bold max-sm:text-xl max-sm:text-center">
+      <h1 className="text-3xl font-bold max-sm:text-sm max-sm:text-center">
         Choose Your Dream Destination
       </h1>
-      <p className="text-gray-500 max-sm:text-sm max-sm:text-center">
+      <p className="text-gray-500 max-sm:text-[10px] max-sm:text-center">
         "Highlight the opportunity for users to pick a place they've always
         wanted to visit."
       </p>

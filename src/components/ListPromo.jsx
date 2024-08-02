@@ -54,7 +54,7 @@ const ListPromo = () => {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col max-sm:w-10/12 max-sm:mx-auto">
       <div className="grid grid-cols-3 gap-10 p-5 max-sm:grid-cols-1">
         {currentItems.map((item) => (
           <Link

@@ -41,8 +41,8 @@ const PromoHome = () => {
     <section className="w-3/4 mx-auto">
       <div className="flex flex-col items-center justify-center gap-10 p-5 bg-gray-300 border backdrop-filter backdrop-blur-md bg-opacity-10 rounded-2xl">
         <div className="flex flex-col items-center justify-center">
-          <h1 className="text-3xl font-bold max-sm:text-xl">Travel More, Save More</h1>
-          <p className="text-gray-500 max-sm:text-sm max-sm:text-center">
+          <h1 className="text-3xl font-bold max-sm:text-sm">Travel More, Save More</h1>
+          <p className="text-gray-500 max-sm:text-[10px] max-sm:text-center">
             "With our exclusive discounts and offers, you can explore more of
             the world without worrying about your budget."
           </p>

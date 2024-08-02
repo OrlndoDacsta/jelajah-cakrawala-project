@@ -146,7 +146,7 @@ const FormLogin = () => {
 
         <div className="flex items-center justify-center">
           <button
-            className="w-full py-2 text-xl font-bold text-white duration-300 ease-out transform bg-blue-500 rounded-xl hover:rounded-sm hover:bg-blue-800 hover:shadow-2xl hover:-translate-y-1 max-sm:text-lg max-sm:w-3/4"
+            className="w-full py-2 text-xl font-bold text-white duration-300 ease-out transform bg-blue-500 rounded-xl hover:rounded-sm hover:bg-blue-800 hover:shadow-2xl hover:-translate-y-1 max-sm:text-lg"
             onClick={handleSubmit}
             disabled={isLoading}
           >

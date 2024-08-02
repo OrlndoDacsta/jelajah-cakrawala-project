@@ -47,10 +47,10 @@ const ActivityHome = () => {
 
   return (
     <section className="flex flex-col items-center justify-center w-3/4 p-5 mx-auto mt-10 bg-gray-300 border rounded-xl backdrop-filter backdrop-blur-md bg-opacity-10">
-      <h1 className="text-3xl font-bold max-sm:text-xl max-sm:text-center">
+      <h1 className="text-3xl font-bold max-sm:text-sm max-sm:text-center">
         Create Memories with Every Activity
       </h1>
-      <p className="text-gray-500 max-sm:text-sm max-sm:text-center">
+      <p className="text-gray-500 max-sm:text-[10px] max-sm:text-center">
         "Suggest that each activity will lead to lasting and cherished
         memories."
       </p>
@@ -86,7 +86,7 @@ const ActivityHome = () => {
 
                     <div className="flex gap-1">
                       <RiMapPin2Fill className="text-yellow-500" />
-                      <CardDescription className="text-sm">
+                      <CardDescription className="text-sm max-sm:text-[10px]">
                         {item.city}, {item.province}
                       </CardDescription>
                     </div>

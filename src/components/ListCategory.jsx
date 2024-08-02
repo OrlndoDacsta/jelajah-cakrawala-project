@@ -73,7 +73,7 @@ const ListCategory = () => {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col max-sm:w-10/12 max-sm:mx-auto">
       <div className="grid w-10/12 grid-cols-3 gap-10 p-5 mx-auto max-sm:grid-cols-1">
         {currentItems.map((item) => (
           <div
@@ -108,7 +108,7 @@ const ListCategory = () => {
         ))}
       </div>
       <ReactPaginate
-        className="flex justify-center gap-5 p-3 mx-auto mt-5 w-fit"
+        className="flex justify-center gap-5 p-3 mx-auto mt-5 w-fit max-sm:w-10/12"
         breakLabel="..."
         nextLabel="Next"
         onPageChange={handlePageClick}
