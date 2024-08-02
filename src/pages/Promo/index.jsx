@@ -8,7 +8,6 @@ const Promo = () => {
   return (
     <div>
       <Navbar />
-      
       <div
         className="flex h-[500px] bg-cover justify-center items-center"
         style={{ backgroundImage: `url(${promoImg})` }}
@@ -24,9 +23,9 @@ const Promo = () => {
       </div>
 
       <div className="w-10/12 mx-auto mt-5">
-        <div className="flex items-center w-7/12 gap-1 max-sm:w-10/12 max-sm:mx-auto">
+        <div className="flex items-center w-7/12 gap-1 max-sm:w-11/12 max-sm:mx-auto">
           <RiDiscountPercentFill className="w-10 h-10 text-primary" />
-          <p className="text-xl font-bold max-sm:text-sm">
+          <p className="text-xl font-bold max-sm:text-xs">
             Extend your vacation without extending your budget. Check out our
             long-stay discounts.
           </p>

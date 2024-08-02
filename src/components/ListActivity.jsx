@@ -53,7 +53,7 @@ const ListActivity = () => {
         }
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setActivity(res.data.data);
       })
       .catch((err) => {
@@ -109,7 +109,7 @@ const ListActivity = () => {
   }, []);
 
   return (
-    <div className="max-sm:w-10/12 max-sm:mx-auto">
+    <div>
       {/* filter */}
       <div className="flex justify-center w-10/12 mx-auto mt-2">
         <Select onValueChange={handleFilter}>
@@ -139,11 +139,11 @@ const ListActivity = () => {
           </AlertDescription>
         </Alert>
       )}
-      <div className="grid grid-cols-3 gap-5 p-5 max-sm:grid-cols-1">
+      <div className="grid grid-cols-3 gap-5 p-5 max-sm:grid-cols-1 max-sm:justify-center max-sm:place-items-center">
         {currentItems.map((item) => (
           <Link
             key={item.id}
-            className="w-[350px] border shadow-2xl rounded-3xl"
+            className="w-[350px] border shadow-2xl rounded-3xl max-sm:w-[300px]"
             to={`/activity/${item.id}`}
           >
             <Card>

@@ -33,45 +33,52 @@ const PromoAtributes = () => {
   }, []);
 
   return (
-    <div className="flex items-center gap-5 p-10">
+    <div className="flex items-center gap-5 p-10 max-sm:flex-col">
       <img
-        className="object-cover w-1/2 rounded-t-full"
+        className="object-cover w-1/2 rounded-t-full max-sm:w-[300px]"
         src={detailPromo.imageUrl}
         alt="imgPromo"
       />
-      <div className="w-1/2 p-5">
-        <p className="mb-2 text-2xl font-semibold">{detailPromo.title}</p>
-        <table className="w-full text-lg">
+      <div className="w-1/2 p-5 max-sm:w-screen">
+        <p className="mb-2 text-2xl font-bold text-center">{detailPromo.title}</p>
+        <table className="w-full text-lg max-sm:text-sm">
           <tr>
-            <td>Description</td>
-            <td>: {detailPromo.description}</td>
+            <td className="font-bold">Description</td>
+            <td>:</td>
+            <td>{detailPromo.description}</td>
           </tr>
           <tr>
-            <td>Promo Code</td>
-            <td>: {detailPromo.promo_code}</td>
+            <td className="font-bold">Promo Code</td>
+            <td>:</td>
+            <td>{detailPromo.promo_code}</td>
           </tr>
           <tr>
-            <td>Minimum Claim Price</td>
-            <td>: {formatRupiah(detailPromo.minimum_claim_price)}</td>
+            <td className="font-bold">Minimum Claim Price</td>
+            <td>:</td>
+            <td>{formatRupiah(detailPromo.minimum_claim_price)}</td>
           </tr>
           <tr>
-            <td>Discount Price</td>
-            <td>: {formatRupiah(detailPromo.promo_discount_price)}</td>
+            <td className="font-bold">Discount Price</td>
+            <td>:</td>
+            <td>{formatRupiah(detailPromo.promo_discount_price)}</td>
           </tr>
           <tr>
-            <td>Terms and Conditions</td>
-            <td>: {detailPromo.terms_condition}</td>
+            <td className="font-bold">Terms and Conditions</td>
+            <td>:</td>
+            <td>{detailPromo.terms_condition}</td>
           </tr>
           <tr>
-            <td>Created at</td>
+            <td className="font-bold">Created at</td>
+            <td>:</td>
             <td>
-              : {moment(detailPromo.createdAt).format("DD-MM-YYYY hh:mm")}
+              {moment(detailPromo.createdAt).format("DD-MM-YYYY hh:mm")}
             </td>
           </tr>
           <tr>
-            <td>Last Update</td>
+            <td className="font-bold">Last Update</td>
+            <td>:</td>
             <td>
-              : {moment(detailPromo.updatedAt).format("DD-MM-YYYY hh:mm")}
+              {moment(detailPromo.updatedAt).format("DD-MM-YYYY hh:mm")}
             </td>
           </tr>
         </table>

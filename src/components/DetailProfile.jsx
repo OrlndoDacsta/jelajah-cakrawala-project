@@ -33,7 +33,7 @@ const DetailProfile = () => {
                     <img
                       src={userInfo.user.profilePictureUrl}
                       alt="profilePicture"
-                      className="object-cover w-1/2 mx-auto mb-2 rounded-full"
+                      className="object-cover mx-auto mb-2 w-[250px] h-[200px] rounded-2xl max-sm:rounded-full max-sm:w-[100px] max-sm:h-[100px]"
                     />
                   </CardDescription>
                 </CardHeader>

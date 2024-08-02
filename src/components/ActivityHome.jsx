@@ -86,7 +86,7 @@ const ActivityHome = () => {
 
                     <div className="flex gap-1">
                       <RiMapPin2Fill className="text-yellow-500" />
-                      <CardDescription className="text-sm max-sm:text-[10px]">
+                      <CardDescription className="text-sm">
                         {item.city}, {item.province}
                       </CardDescription>
                     </div>
@@ -101,7 +101,7 @@ const ActivityHome = () => {
       </Carousel>
 
       <Carousel
-        className="w-9/12 mt-5 sm:hidden"
+        className="w-8/12 mt-5 sm:hidden"
         opts={{
           align: "start",
           loop: true,
@@ -118,13 +118,13 @@ const ActivityHome = () => {
                       src={item.imageUrls}
                       alt="imgActivity"
                     />
-                    <div className="flex flex-col items-center justify-center gap-1">
-                      <CardTitle className="text-xs font-bold">
+                    <div className="flex items-center gap-1">
+                      <CardTitle className="font-bold text-[10px]">
                         {item.title}
                       </CardTitle>
                       <div className="flex justify-center p-1 bg-blue-500 rounded-full w-fit">
-                        <FaStar className="w-1/2 text-yellow-500" />
-                        <CardDescription className="text-xs text-black">
+                        <FaStar className="w-2/4 text-yellow-500" />
+                        <CardDescription className="text-[10px] text-black">
                           {item.rating}
                         </CardDescription>
                       </div>
@@ -132,8 +132,11 @@ const ActivityHome = () => {
 
                     <div className="flex gap-1">
                       <RiMapPin2Fill className="text-yellow-500" />
-                      <CardDescription className="text-xs">
-                        {item.city}, {item.province}
+                      <CardDescription className="text-[8px]">
+                        {item.city}
+                      </CardDescription>
+                      <CardDescription className="text-[8px]">
+                        {item.province}
                       </CardDescription>
                     </div>
                   </CardContent>

@@ -151,7 +151,7 @@ const CreatePromoDashboard = () => {
   };
 
   return (
-    <div className="w-10/12 p-5">
+    <div className="w-10/12 p-5 max-sm:w-full">
       <div>
         <Card>
           <CardContent className="p-5">

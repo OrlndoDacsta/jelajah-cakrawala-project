@@ -21,7 +21,7 @@ const AvatarDashboard = () => {
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" size="icon" className="rounded-full">
           <Avatar>
-            <AvatarImage src={isLogin ? userInfo.user.profilePictureUrl : ""} />
+            <AvatarImage className="object-cover" src={isLogin ? userInfo.user.profilePictureUrl : ""} />
             <AvatarFallback className="text-xl text-primary">CN</AvatarFallback>
           </Avatar>
           <span className="sr-only">Toggle user menu</span>

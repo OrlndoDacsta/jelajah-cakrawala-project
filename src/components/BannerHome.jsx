@@ -58,7 +58,7 @@ const BannerHome = () => {
               <Card className="flex flex-col items-center w-full pt-5 bg-gray-300 border backdrop-filter backdrop-blur-md bg-opacity-10">
                 <CardContent>
                   <img
-                    className="w-[500px] h-[300px] object-cover rounded-xl max-sm:w-[300px] max-sm:h-[200px]"
+                    className="w-[500px] h-[300px] object-cover rounded-xl max-sm:w-[250px] max-sm:h-[150px]"
                     src={banner.imageUrl}
                     alt={banner.title}
                   />

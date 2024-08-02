@@ -60,8 +60,8 @@ const ListBanner = () => {
   }, []);
 
   return (
-    <div className="flex flex-col max-sm:w-10/12 max-sm:mx-auto">
-      <div className="grid w-10/12 grid-cols-3 gap-5 p-5 mx-auto max-sm:grid-cols-1">
+    <div className="flex flex-col">
+      <div className="grid w-10/12 grid-cols-3 gap-5 p-5 mx-auto max-sm:grid-cols-1 max-sm:w-screen max-sm:justify-center max-sm:place-items-center">
         {currentItems.map((item) => (
           <div
             key={item.id}

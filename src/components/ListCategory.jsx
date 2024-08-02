@@ -73,12 +73,12 @@ const ListCategory = () => {
   }, []);
 
   return (
-    <div className="flex flex-col max-sm:w-10/12 max-sm:mx-auto">
-      <div className="grid w-10/12 grid-cols-3 gap-10 p-5 mx-auto max-sm:grid-cols-1">
+    <div className="flex flex-col">
+      <div className="grid w-10/12 grid-cols-3 gap-10 p-5 mx-auto max-sm:grid-cols-1 max-sm:justify-center max-sm:place-items-center">
         {currentItems.map((item) => (
           <div
             key={item.id}
-            className="w-[350px] border shadow-2xl rounded-3xl"
+            className="w-[350px] border shadow-2xl rounded-3xl max-sm:w-[300px]"
           >
             <Card>
               <CardHeader>

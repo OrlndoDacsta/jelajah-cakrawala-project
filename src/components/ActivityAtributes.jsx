@@ -19,7 +19,7 @@ const ActivityAtributes = () => {
         }
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setDetailActivity(res.data.data);
       })
       .catch((err) => {
@@ -34,20 +34,20 @@ const ActivityAtributes = () => {
   return (
     <div>
       <div className="flex flex-col font-semibold">
-        <h1 className="mt-20 text-3xl font-bold text-center">
+        <h1 className="mt-20 text-3xl font-bold text-center max-sm:text-lg">
           Detail Information Activity
         </h1>
-        <p className="mt-5 mb-4 text-3xl font-bold text-center">
+        <p className="mt-5 mb-4 text-3xl font-bold text-center max-sm:text-[15px] max-sm:mb-2 max-sm:mt-2">
           {detailActivity.title}
         </p>
         <img
-          className="object-cover w-3/4 mx-auto h-[400px] rounded-2xl"
+          className="object-cover w-3/4 mx-auto h-[400px] rounded-2xl max-sm:h-[200px]"
           src={detailActivity.imageUrls}
           alt="imgPromo"
         />
         <div className="flex flex-col w-3/4 gap-10 p-3 mx-auto mt-6 bg-gray-300 bg-opacity-25 shadow-2xl backdrop-filter backdrop-blur-md rounded-xl">
           <div className="flex items-center justify-center gap-5">
-            <table className="w-full">
+            <table className="w-full max-sm:text-sm">
               <tr>
                 <td className="font-semibold">Location</td>
               </tr>
@@ -76,12 +76,14 @@ const ActivityAtributes = () => {
             </table>
             <div
               dangerouslySetInnerHTML={{ __html: detailActivity.location_maps }}
+              className="max-sm:hidden"
             ></div>
           </div>
-
-          <table className="w-full">
+          <table className="w-full max-sm:text-sm">
             <tr>
-              <td className="font-semibold" colSpan={2}>Detail Information</td>
+              <td className="font-semibold" colSpan={2}>
+                Detail Information
+              </td>
               <td></td>
             </tr>
             <tr>
@@ -108,8 +110,8 @@ const ActivityAtributes = () => {
               <td>Rating</td>
               <td>:</td>
               <td className="flex items-center gap-1">
-                <FaStar className="text-yellow-500" /> {detailActivity.rating}{" "}
-                ({detailActivity.total_reviews} reviews)
+                <FaStar className="text-yellow-500" /> {detailActivity.rating} (
+                {detailActivity.total_reviews} reviews)
               </td>
             </tr>
           </table>

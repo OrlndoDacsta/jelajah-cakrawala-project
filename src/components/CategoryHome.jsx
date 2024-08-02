@@ -84,7 +84,7 @@ const CategoryHome = () => {
       </Carousel>
 
       <Carousel
-        className="w-9/12 mt-5 sm:hidden"
+        className="w-8/12 mt-5 sm:hidden"
         opts={{
           align: "start",
           loop: true,
@@ -101,7 +101,7 @@ const CategoryHome = () => {
                       src={item.imageUrl}
                       alt="imgCategory"
                     />
-                    <CardTitle className="text-sm font-bold">
+                    <CardTitle className="font-bold text-[10px]">
                       {item.name}
                     </CardTitle>
                   </CardContent>

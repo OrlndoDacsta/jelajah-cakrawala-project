@@ -54,12 +54,12 @@ const ListPromo = () => {
   }, []);
 
   return (
-    <div className="flex flex-col max-sm:w-10/12 max-sm:mx-auto">
-      <div className="grid grid-cols-3 gap-10 p-5 max-sm:grid-cols-1">
+    <div className="flex flex-col">
+      <div className="grid grid-cols-3 gap-10 p-5 max-sm:grid-cols-1 max-sm:justify-center max-sm:place-items-center">
         {currentItems.map((item) => (
           <Link
             key={item.id}
-            className="w-[340px] border shadow-2xl rounded-3xl"
+            className="w-[340px] border shadow-2xl rounded-3xl max-sm:w-[300px]"
             to={`/promo/${item.id}`}
           >
             <Card>

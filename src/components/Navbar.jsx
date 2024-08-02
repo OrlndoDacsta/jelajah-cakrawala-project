@@ -30,7 +30,7 @@ const Navbar = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   return (
-    <nav className="fixed z-50 flex items-center justify-between w-full h-16 bg-gray-300 border border-gray-200 backdrop-filter backdrop-blur-md bg-opacity-10 max-sm:pl-3">
+    <nav className="fixed z-50 flex items-center justify-between w-full h-16 bg-gray-300 border border-gray-200 backdrop-filter backdrop-blur-md bg-opacity-10 max-sm:pl-3 max-sm:w-screen">
       <img className="w-20 pl-3 max-md:hidden" src={logoHome} alt="logoHome" />
       <Sheet>
         <SheetTrigger asChild>
@@ -101,7 +101,7 @@ const Navbar = () => {
         {isLoggedIn && (
           <DropdownMenu>
             <Avatar>
-              <AvatarImage src={userInfo.user.profilePictureUrl} />
+              <AvatarImage src={userInfo.user.profilePictureUrl} className="object-cover" />
               <AvatarFallback className="text-xl text-primary">
                 CN
               </AvatarFallback>
