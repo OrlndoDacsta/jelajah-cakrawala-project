@@ -46,7 +46,7 @@ const ActivityAtributes = () => {
           alt="imgPromo"
         />
         <div className="flex flex-col w-3/4 gap-10 p-3 mx-auto mt-6 bg-gray-300 bg-opacity-25 shadow-2xl backdrop-filter backdrop-blur-md rounded-xl">
-          <div className="flex items-center justify-center gap-5">
+          <div className="flex items-center justify-center gap-5 max-sm:flex-col">
             <table className="w-full max-sm:text-sm">
               <tr>
                 <td className="font-semibold">Location</td>
@@ -76,7 +76,7 @@ const ActivityAtributes = () => {
             </table>
             <div
               dangerouslySetInnerHTML={{ __html: detailActivity.location_maps }}
-              className="max-sm:hidden"
+              className="overflow-scroll rounded-xl max-sm:h-[200px] max-sm:w-[250px]"
             ></div>
           </div>
           <table className="w-full max-sm:text-sm">

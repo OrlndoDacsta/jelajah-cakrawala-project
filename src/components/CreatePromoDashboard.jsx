@@ -43,10 +43,10 @@ const CreatePromoDashboard = () => {
   const [minimumPrice, setMinimumPrice] = useState("");
   const [promoDiscount, setPromoDiscount] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const { toast } = useToast();
   const navigate = useNavigate();
   const userInfo = useSelector((state) => state.user.userInfo);
-  
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -81,6 +81,7 @@ const CreatePromoDashboard = () => {
       );
       //   console.log(res);
       setImageUrl(res.data.url);
+      setImagePreview(URL.createObjectURL(file));
       toast({ description: res.data.message, variant: "success" });
     } catch (error) {
       console.log(error);
@@ -125,8 +126,7 @@ const CreatePromoDashboard = () => {
     const config = {
       headers: {
         apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-        Authorization:
-          `Bearer ${userInfo.token ?? ""}`,
+        Authorization: `Bearer ${userInfo.token ?? ""}`,
       },
     };
 
@@ -263,6 +263,16 @@ const CreatePromoDashboard = () => {
                   <div className="mt-2">
                     <Input type="file" id="image" onChange={handleUpload} />
                   </div>
+                  {imagePreview && (
+                    <div className="mt-2">
+                      <img
+                        src={imagePreview}
+                        alt="Image Preview"
+                        className="col-span-3 mx-auto rounded-xl"
+                        style={{ maxWidth: "50%", maxHeight: "200px" }}
+                      />
+                    </div>
+                  )}
                 </div>
               </section>
               <section className="w-1/2 max-sm:hidden">
@@ -308,6 +318,16 @@ const CreatePromoDashboard = () => {
                   <div className="mt-2">
                     <Input type="file" id="image" onChange={handleUpload} />
                   </div>
+                  {imagePreview && (
+                    <div className="mt-2">
+                      <img
+                        src={imagePreview}
+                        alt="Image Preview"
+                        className="col-span-3 mx-auto rounded-xl"
+                        style={{ maxWidth: "50%", maxHeight: "200px" }}
+                      />
+                    </div>
+                  )}
                 </div>
               </section>
             </div>

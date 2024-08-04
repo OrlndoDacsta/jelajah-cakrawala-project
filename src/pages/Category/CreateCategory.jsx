@@ -19,6 +19,7 @@ import { useSelector } from "react-redux";
 const CreateCategory = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const { toast } = useToast();
   const userInfo = useSelector((state) => state.user.userInfo);
 
@@ -55,6 +56,7 @@ const CreateCategory = () => {
       );
       //   console.log(res);
       setImage(res.data.url);
+      setImagePreview(URL.createObjectURL(file));
       toast({ description: res.data.message, variant: "success" });
     } catch (error) {
       console.log(error);
@@ -134,6 +136,16 @@ const CreateCategory = () => {
                 onChange={handleUpload}
               />
             </div>
+            {imagePreview && (
+              <div className="">
+                <img
+                  src={imagePreview}
+                  alt="Image Preview"
+                  className="col-span-3 mx-auto rounded-xl"
+                  style={{ maxWidth: "50%", maxHeight: "200px" }}
+                />
+              </div>
+            )}
           </div>
           <DialogFooter>
             <Button type="submit" onClick={handleSubmit}>

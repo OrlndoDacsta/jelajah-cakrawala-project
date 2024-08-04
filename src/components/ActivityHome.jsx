@@ -111,27 +111,21 @@ const ActivityHome = () => {
           {activity.map((item) => (
             <CarouselItem key={item.id}>
               <Link to={"/activity"}>
-                <Card>
-                  <CardContent className="flex flex-col items-center justify-center gap-2 mt-5">
+                <Card> 
+                  <CardContent className="flex flex-col items-center justify-center mt-5">
                     <img
                       className="object-cover rounded-lg aspect-video"
                       src={item.imageUrls}
                       alt="imgActivity"
                     />
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center">
                       <CardTitle className="font-bold text-[10px]">
                         {item.title}
                       </CardTitle>
-                      <div className="flex justify-center p-1 bg-blue-500 rounded-full w-fit">
-                        <FaStar className="w-2/4 text-yellow-500" />
-                        <CardDescription className="text-[10px] text-black">
-                          {item.rating}
-                        </CardDescription>
-                      </div>
                     </div>
 
-                    <div className="flex gap-1">
-                      <RiMapPin2Fill className="text-yellow-500" />
+                    <div className="flex items-center gap-1">
+                      <RiMapPin2Fill className="text-yellow-500 w-[8px]" />
                       <CardDescription className="text-[8px]">
                         {item.city}
                       </CardDescription>
